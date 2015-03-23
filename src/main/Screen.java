@@ -1,11 +1,16 @@
 package main;
 
-public class Screen {
+/**
+ * Anzeige
+ * 
+ * @author Colin Dömer
+ */
+public abstract class Screen {
 
 	public void update() {
 		
 	}
-	
+
 	public void render() {
 		
 	}
