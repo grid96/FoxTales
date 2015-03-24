@@ -8,6 +8,8 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
+import static org.lwjgl.opengl.GL11.*;
+
 /**
  * Texturen Verwaltung
  * 
@@ -15,14 +17,15 @@ import org.newdawn.slick.util.ResourceLoader;
  */
 public class Textures {
 
-	public static Texture test;
+	public static Texture testlevel, testfox;
 
 	/**
 	 * Lädt levelunabhängige Texturen.
 	 */
 	public static void load() {
 
-		test = loadTexture("icon16", false);
+		testlevel = loadTexture("testlevel", false);
+		testfox = loadTexture("testfox", false);
 	}
 
 	/**
@@ -45,7 +48,9 @@ public class Textures {
 
 		Texture texture = null;
 		try {
-			TextureLoader.getTexture(((compressed && compressedSounds) ? "JPG" : "PNG"), ResourceLoader.getResourceAsStream(name + ((compressed && compressedTextures) ? ".jpg" : ".png")));
+			long l = System.currentTimeMillis();
+			texture = TextureLoader.getTexture(((compressed && compressedTextures) ? "JPG" : "PNG"), ResourceLoader.getResourceAsStream(name + ((compressed && compressedTextures) ? ".jpg" : ".png")));
+			System.out.println(System.currentTimeMillis() - l + " ms");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,5 +75,34 @@ public class Textures {
 			textures[i] = loadTexture(name + i, compressed);
 		}
 		return textures;
+	}
+
+	/**
+	 * Zeichnet ein texturiertes Rechteck
+	 * 
+	 * @param texture
+	 *            Textur
+	 * @param x
+	 *            Start X
+	 * @param y
+	 *            Start Y
+	 * @param w
+	 *            Breite
+	 * @param h
+	 *            Höhe
+	 */
+	public static void renderQuad(Texture texture, float x, float y, float w, float h) {
+
+		texture.bind();
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
+		glVertex2f(x, y);
+		glTexCoord2f(0, 1);
+		glVertex2f(x, y + h);
+		glTexCoord2f(1, 1);
+		glVertex2f(x + w, y + h);
+		glTexCoord2f(1, 0);
+		glVertex2f(x + w, y);
+		glEnd();
 	}
 }
