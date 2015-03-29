@@ -26,13 +26,13 @@ public abstract class Level {
 	/**
 	 * Überprüft ob es eine Kollision zwischen dem Level und dem übergebenen Rechteck gibt.
 	 * 
-	 * @param x0
+	 * @param x
 	 *            links
-	 * @param y0
+	 * @param y
 	 *            oben
-	 * @param x1
+	 * @param w
 	 *            rechts
-	 * @param y1
+	 * @param h
 	 *            unten
 	 * @return Kollision
 	 */
