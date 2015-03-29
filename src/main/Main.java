@@ -26,7 +26,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		System.out.println("Fox Tales started " + LocalDateTime.now());
+		System.out.println("Inari started " + LocalDateTime.now());
 		game = new FoxTales();
 	}
 

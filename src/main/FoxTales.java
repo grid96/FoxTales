@@ -41,7 +41,7 @@ public class FoxTales extends Thread {
 	 */
 	public void init() throws LWJGLException {
 
-		Display.setTitle("Fox Tales");
+		Display.setTitle("Inari");
 
 		Display.setFullscreen(fullscreen);
 		if (!fullscreen) {
@@ -163,7 +163,7 @@ public class FoxTales extends Thread {
 		Keyboard.destroy();
 		Display.destroy();
 		AL.destroy();
-		System.out.println("Fox Tales stopped " + LocalDateTime.now());
+		System.out.println("Inari stopped " + LocalDateTime.now());
 		System.exit(0);
 	}
 }

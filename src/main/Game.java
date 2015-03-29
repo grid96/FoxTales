@@ -3,7 +3,6 @@ package main;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluOrtho2D;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL12;
@@ -21,6 +20,7 @@ public class Game extends Screen {
 	public Fox fox;
 	public float x, y;
 	public float width, height;
+	public float x0, y0, x1, y1;
 
 	/**
 	 * OpenGL Einstellungen vornehmen und Level laden
@@ -32,7 +32,7 @@ public class Game extends Screen {
 		resize();
 
 		level = new Level1();
-		fox = new Fox();
+		fox = new Fox(level);
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -46,31 +46,20 @@ public class Game extends Screen {
 	 */
 	public void update() {
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			fox.y -= 0.1f;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			fox.x -= 0.1f;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			fox.y += 0.1f;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			fox.x += 0.1f;
-		}
+		fox.update();
 		x = fox.x;
 		y = fox.y - 2.5f;
 		y += 5f * ((float) (Main.height - Mouse.getY()) / Main.height - 0.5f);
 		x += 5f * resolution * ((float) Mouse.getX() / Main.width - 0.5f);
-		if (x - width / 2 < 0) {
-			x = width / 2;
-		}
+		// if (x - width / 2 < 0) {
+		// x = width / 2;
+		// }
 		if (y - height / 2 < 0) {
 			y = height / 2;
 		}
-		if (x + width / 2 > level.width) {
-			x = level.width - width / 2;
-		}
+		// if (x + width / 2 > level.width) {
+		// x = level.width - width / 2;
+		// }
 		if (y + height / 2 > level.height) {
 			y = level.height - height / 2;
 		}
@@ -87,11 +76,15 @@ public class Game extends Screen {
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		gluOrtho2D(x - width / 2, x + width / 2, y + height / 2, y - height / 2);
+		x0 = x - width / 2;
+		x1 = x + width / 2;
+		y0 = y - height / 2;
+		y1 = y + height / 2;
+		gluOrtho2D(x0, x1, y1, y0);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		level.render();
+		level.render(x0, y0, x1, y1);
 		fox.render();
 
 		Display.update();
