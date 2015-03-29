@@ -16,12 +16,17 @@ public class Sounds {
 
 	private static float soundVolume = 1;
 	private static float musicVolume = 1;
+	public static boolean loaded, loadedLevel1;
 
 	/**
 	 * Lädt levelunabhängige Sounds.
 	 */
 	public static void load() {
 
+		if (loaded) {
+			return;
+		}
+		loaded = true;
 	}
 
 	/**
@@ -29,6 +34,10 @@ public class Sounds {
 	 */
 	public static void loadLevel1() {
 
+		if (loadedLevel1) {
+			return;
+		}
+		loadedLevel1 = true;
 	}
 
 	/**

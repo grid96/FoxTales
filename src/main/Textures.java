@@ -18,14 +18,19 @@ import static org.lwjgl.opengl.GL11.*;
 public class Textures {
 
 	public static Texture testlevel, testfox;
+	public static boolean loaded, loadedLevel1;
 
 	/**
 	 * Lädt levelunabhängige Texturen.
 	 */
 	public static void load() {
 
+		if (loaded) {
+			return;
+		}
 		testlevel = loadTexture("testlevel", false);
 		testfox = loadTexture("testfox", false);
+		loaded = true;
 	}
 
 	/**
@@ -33,6 +38,10 @@ public class Textures {
 	 */
 	public static void loadLevel1() {
 
+		if (loadedLevel1) {
+			return;
+		}
+		loadedLevel1 = true;
 	}
 
 	/**
