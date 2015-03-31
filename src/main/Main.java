@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Main {
 
 	public static boolean fullscreen = false, vsync = false, antialiasing = true, shortcut = true, mute = true;
-	public static boolean hd = false, compressedSounds = false, compressedTextures = false;
+	public static boolean hd = false, compressedSounds = false, compressedTextures = false, bufferedText = true;
 	public static int width = 1280, height = 720;
 	public static float resolution = (float) width / height;
 	public static int frames, updates;

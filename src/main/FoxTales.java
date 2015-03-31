@@ -24,6 +24,7 @@ import static main.Main.*;
 public class FoxTales extends Thread {
 
 	public Screen screen;
+	public long time;
 
 	/**
 	 * Startet einen neuen Thread.
@@ -63,9 +64,22 @@ public class FoxTales extends Thread {
 			Sounds.setMusicVolume(0);
 		}
 
+		time = System.currentTimeMillis();
+		System.out.println("Loading Textures ... ");
 		Textures.load();
+		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		time = System.currentTimeMillis();
+		System.out.println("Loading Cursors ... ");
 		Cursors.load();
+		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		time = System.currentTimeMillis();
+		System.out.println("Loading Fonts ... ");
+		Fonts.load();
+		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		time = System.currentTimeMillis();
+		System.out.println("Loading Sounds ... ");
 		Sounds.load();
+		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
 
 		Mouse.setNativeCursor(Cursors.standard);
 

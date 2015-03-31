@@ -21,6 +21,8 @@ public class Game extends Screen {
 	public float x, y;
 	public float width, height;
 	public float x0, y0, x1, y1;
+	
+	public Text test = new Text(Fonts.arial12, "test");
 
 	/**
 	 * OpenGL Einstellungen vornehmen und Level laden
@@ -74,15 +76,13 @@ public class Game extends Screen {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
 		x0 = x - width / 2;
 		x1 = x + width / 2;
 		y0 = y - height / 2;
 		y1 = y + height / 2;
-		gluOrtho2D(x0, x1, y1, y0);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
+		setOrtho2D(x0, y0, x1, y1);
+		
+		test.render(0, 0);
 
 		level.render(x0, y0, x1, y1);
 		fox.render();
@@ -97,5 +97,22 @@ public class Game extends Screen {
 
 		height = 10f;
 		width = height * resolution;
+	}
+	
+	/**
+	 * Setzt die Kamera.
+	 * 
+	 * @param x0 links
+	 * @param y0 oben
+	 * @param x1 rechts
+	 * @param y1 unten
+	 */
+	public void setOrtho2D(float x0, float y0, float x1, float y1) {
+	
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		gluOrtho2D(x0, x1, y1, y0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 	}
 }
