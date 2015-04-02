@@ -114,6 +114,24 @@ public class Textures {
 		glVertex2f(x + w, y);
 		glEnd();
 	}
+	
+	public static void renderColoredQuad(float x, float y, float w, float h, float r, float g, float b, float a) {
+
+		glDisable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+		glColor4f(r, g, b, a);
+		glTexCoord2f(0, 0);
+		glVertex2f(x, y);
+		glTexCoord2f(0, 1);
+		glVertex2f(x, y + h);
+		glTexCoord2f(1, 1);
+		glVertex2f(x + w, y + h);
+		glTexCoord2f(1, 0);
+		glVertex2f(x + w, y);
+		glColor4f(1, 1, 1, 1);
+		glEnd();
+		glEnable(GL_TEXTURE_2D);
+	}
 
 	/**
 	 * Zeichnet ein gespiegelt texturiertes Rechteck

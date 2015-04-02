@@ -21,6 +21,7 @@ public class Game extends Screen {
 	public float x, y;
 	public float width, height;
 	public float x0, y0, x1, y1;
+	public Console console;
 	
 	public Text test = new Text(Fonts.arial12, "test");
 
@@ -35,6 +36,7 @@ public class Game extends Screen {
 
 		level = new Level1();
 		fox = new Fox(level);
+		console = new Console(20, Main.height - 220, 300, 200);
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -48,6 +50,7 @@ public class Game extends Screen {
 	 */
 	public void update() {
 
+		console.update();
 		fox.update();
 		x = fox.x;
 		y = fox.y - 2.5f;
@@ -65,6 +68,10 @@ public class Game extends Screen {
 		if (y + height / 2 > level.height) {
 			y = level.height - height / 2;
 		}
+		
+		if (updates % 60 == 0) {
+			console.addMessage("test", 0xFFFFFFFF);
+		}
 	}
 
 	/**
@@ -81,11 +88,12 @@ public class Game extends Screen {
 		y0 = y - height / 2;
 		y1 = y + height / 2;
 		setOrtho2D(x0, y0, x1, y1);
-		
-		test.render(0, 0);
 
 		level.render(x0, y0, x1, y1);
 		fox.render();
+		
+		setOrtho2D(0, 0, Main.width, Main.height);
+		console.render();
 
 		Display.update();
 	}

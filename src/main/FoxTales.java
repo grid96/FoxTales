@@ -146,6 +146,7 @@ public class FoxTales extends Thread {
 			while (d >= 1) {
 				update();
 				u++;
+				updates++;
 				d--;
 			}
 			render();

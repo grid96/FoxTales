@@ -21,6 +21,7 @@ public class Text {
 	public String text;
 	public int width, height;
 	public int limit;
+	public float a = 1, r = 1, g = 1, b = 1;
 
 	public int frameBuffer = -1;
 	public int texture = -1;
@@ -102,6 +103,28 @@ public class Text {
 
 		render(x, y, 0, width, height, 0, 0, 0);
 	}
+	
+	public void renderPart(float x, float y, float x0, float x1, float y0, float y1) {
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+		glBegin(GL_QUADS);
+		glColor4f(r, g, b, a);
+		glTexCoord2f(x0 / width, 1 - y1 / height);
+		glVertex2f(x0, y0);
+		glTexCoord2f(x0 / width, y0 / height);
+		glVertex2f(x0, height - y1);
+		glTexCoord2f(1 - x1 / width, y0 / height);
+		glVertex2f(width - x1, height - y1);
+		glTexCoord2f(1 - x1 / width, 1 - y1 / height);
+		glVertex2f(width - x1, y0);
+		glEnd();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
 
 	public void render(float x, float y, float z, float w, float h, float a, float xf, float yf) {
 
@@ -115,7 +138,7 @@ public class Text {
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
 		glBegin(GL_QUADS);
-		glColor3f(1, 1, 1);
+		glColor4f(r, g, b, a);
 		glTexCoord2f(0, 1);
 		glVertex3f(0, 0, z);
 		glTexCoord2f(0, 0);
@@ -129,6 +152,18 @@ public class Text {
 		glRotatef(-a, 0, 0, 1);
 		glTranslatef(-(x + xf), -(y + yf), 0);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+	
+	public void setColor(int c) {
+		
+		int b = c % 0x100;
+		int g = c % 0x10000 / 0x100;
+		int r = c % 0x1000000 / 0x10000;
+		int a = c / 0x1000000;
+		this.a = a / 255f;
+		this.r = r / 255f;
+		this.g = g / 255f;
+		this.b = b / 255f;
 	}
 
 	public void destroy() {
