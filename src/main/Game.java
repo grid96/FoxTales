@@ -22,7 +22,7 @@ public class Game extends Screen {
 	public float width, height;
 	public float x0, y0, x1, y1;
 	public Console console;
-	
+
 	public Text test = new Text(Fonts.arial12, "test");
 
 	/**
@@ -68,7 +68,7 @@ public class Game extends Screen {
 		if (y + height / 2 > level.height) {
 			y = level.height - height / 2;
 		}
-		
+
 		if (updates % 60 == 0) {
 			console.addMessage("test", 0xFFFFFFFF);
 		}
@@ -91,9 +91,9 @@ public class Game extends Screen {
 
 		level.render(x0, y0, x1, y1);
 		fox.render();
-		
+
 		setOrtho2D(0, 0, Main.width, Main.height);
-		console.render();
+		// console.render();
 
 		Display.update();
 	}
@@ -106,17 +106,21 @@ public class Game extends Screen {
 		height = 10f;
 		width = height * resolution;
 	}
-	
+
 	/**
 	 * Setzt die Kamera.
 	 * 
-	 * @param x0 links
-	 * @param y0 oben
-	 * @param x1 rechts
-	 * @param y1 unten
+	 * @param x0
+	 *            links
+	 * @param y0
+	 *            oben
+	 * @param x1
+	 *            rechts
+	 * @param y1
+	 *            unten
 	 */
 	public void setOrtho2D(float x0, float y0, float x1, float y1) {
-	
+
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		gluOrtho2D(x0, x1, y1, y0);
