@@ -16,7 +16,7 @@ public class Sounds {
 
 	private static float soundVolume = 1;
 	private static float musicVolume = 1;
-	public static boolean loaded, loadedLevel1;
+	public static boolean loaded, loadedLevel0;
 
 	/**
 	 * Lädt levelunabhängige Sounds.
@@ -32,12 +32,12 @@ public class Sounds {
 	/**
 	 * Lädt Texturen für das erste Level.
 	 */
-	public static void loadLevel1() {
+	public static void loadLevel0() {
 
-		if (loadedLevel1) {
+		if (loadedLevel0) {
 			return;
 		}
-		loadedLevel1 = true;
+		loadedLevel0 = true;
 	}
 
 	/**

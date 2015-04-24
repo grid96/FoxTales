@@ -17,8 +17,8 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Textures {
 
-	public static Texture testlevel, testfox;
-	public static boolean loaded, loadedLevel1;
+	public static Texture logo, menuBackground, testlevel, testfox, stone, fruit, brokenFruit, herbage, herbageFruit;
+	public static boolean loaded, loadedLevel0;
 
 	/**
 	 * Lädt levelunabhängige Texturen.
@@ -28,20 +28,27 @@ public class Textures {
 		if (loaded) {
 			return;
 		}
-		testlevel = loadTexture("testlevel", false);
-		testfox = loadTexture("testfox", false);
+		logo = loadTexture("logo", false);
+		menuBackground = loadTexture("menuBackground", true);
+		stone = loadTexture("stone", false);
+		fruit = loadTexture("fruit", false);
+		brokenFruit = loadTexture("brokenFruit", false);
+		herbage = loadTexture("herbage", false);
+		herbageFruit = loadTexture("herbageFruit", false);
 		loaded = true;
 	}
 
 	/**
 	 * Lädt Texturen für das erste Level.
 	 */
-	public static void loadLevel1() {
+	public static void loadLevel0() {
 
-		if (loadedLevel1) {
+		if (loadedLevel0) {
 			return;
 		}
-		loadedLevel1 = true;
+		testlevel = loadTexture("testlevel", false);
+		testfox = loadTexture("testfox", false);
+		loadedLevel0 = true;
 	}
 
 	/**
@@ -60,8 +67,12 @@ public class Textures {
 			// long l = System.currentTimeMillis();
 			texture = TextureLoader.getTexture(((compressed && compressedTextures) ? "JPG" : "PNG"), ResourceLoader.getResourceAsStream(name + ((compressed && compressedTextures) ? ".jpg" : ".png")));
 			// System.out.println(System.currentTimeMillis() - l + " ms");
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			try {
+				texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("missingTexture.png"));
+			} catch (IOException e1) {
+			}
+			System.err.println("Image not found: " + name + ((compressed && compressedTextures) ? ".jpg" : ".png"));
 		}
 		return texture;
 	}
@@ -102,6 +113,7 @@ public class Textures {
 	 */
 	public static void renderQuad(Texture texture, float x, float y, float w, float h) {
 
+		glEnable(GL_TEXTURE_2D);
 		texture.bind();
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
@@ -193,5 +205,10 @@ public class Textures {
 		glTexCoord2f((x0 % w + x1 - x0) / w, y0 % h / h);
 		glVertex2f(x1, y0);
 		glEnd();
+	}
+	
+	public static void setColor(float r, float g, float b, float a) {
+		
+		glColor4f(r, g, b, a);
 	}
 }

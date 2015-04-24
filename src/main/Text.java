@@ -113,7 +113,7 @@ public class Text {
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
 		glBegin(GL_QUADS);
-		glColor4f(r, g, b, a);
+		glColor4f(r, g, b, this.a);
 		glTexCoord2f(x0 / width, 1 - y1 / height);
 		glVertex2f(x0, y0);
 		glTexCoord2f(x0 / width, y0 / height);
@@ -138,7 +138,7 @@ public class Text {
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
 		glBegin(GL_QUADS);
-		glColor4f(r, g, b, a);
+		glColor4f(r, g, b, this.a);
 		glTexCoord2f(0, 1);
 		glVertex3f(0, 0, z);
 		glTexCoord2f(0, 0);
@@ -156,14 +156,22 @@ public class Text {
 	
 	public void setColor(int c) {
 		
-		int b = c % 0x100;
-		int g = c % 0x10000 / 0x100;
-		int r = c % 0x1000000 / 0x10000;
-		int a = c / 0x1000000;
-		this.a = a / 255f;
-		this.r = r / 255f;
-		this.g = g / 255f;
-		this.b = b / 255f;
+		// int b = c % 0x100;
+		// int g = c % 0x10000 / 0x100;
+		// int r = c % 0x1000000 / 0x10000;
+		// int a = c / 0x1000000;
+		// this.a = a / 255f;
+		// this.r = r / 255f;
+		// this.g = g / 255f;
+		// this.b = b / 255f;
+		r = ((c & 0xFF0000) >> 16) / 255f;
+	    g = ((c & 0xFF00) >> 8) / 255f;
+	    b = (c & 0xFF) / 255f;
+	}
+	
+	public void setAlpha(float a) {
+		
+		this.a = a;
 	}
 
 	public void destroy() {

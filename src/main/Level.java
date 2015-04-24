@@ -1,6 +1,6 @@
 package main;
+import java.util.ArrayList;
 
-import static org.lwjgl.opengl.GL11.*;
 import org.newdawn.slick.opengl.Texture;
 
 /**
@@ -12,15 +12,27 @@ public abstract class Level {
 
 	public float width, height;
 	public Texture texture;
+	
+	public ArrayList<Entity> entities = new ArrayList<>();
+	public ArrayList<Particle> particles = new ArrayList<>();
 
 	public void update() {
 
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).update();
+		}
 	}
 
 	public void render(float x0, float y0, float x1, float y1) {
 
-		glEnable(GL_TEXTURE_2D);
 		Textures.renderMapped(texture, width, height, x0, y0, x1, y1);
+	}
+	
+	public void renderOverlay(float x0, float y0, float x1, float y1) {
+		
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).render();
+		}
 	}
 
 	/**

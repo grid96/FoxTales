@@ -67,26 +67,28 @@ public class FoxTales extends Thread {
 		time = System.currentTimeMillis();
 		System.out.println("Loading Textures ... ");
 		Textures.load();
-		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		Textures.loadLevel0();
+		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
 		time = System.currentTimeMillis();
 		System.out.println("Loading Cursors ... ");
 		Cursors.load();
-		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
 		time = System.currentTimeMillis();
 		System.out.println("Loading Fonts ... ");
 		Fonts.load();
-		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
 		time = System.currentTimeMillis();
 		System.out.println("Loading Sounds ... ");
 		Sounds.load();
-		System.out.println(" completed in " + (System.currentTimeMillis() - time) + " ms");
+		Sounds.loadLevel0();
+		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
 
 		Mouse.setNativeCursor(Cursors.standard);
 
 		if (shortcut) {
 			setScreen(new Game());
 		} else {
-			setScreen(new Game());
+			setScreen(new MainMenu());
 		}
 	}
 

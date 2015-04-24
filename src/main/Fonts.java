@@ -17,13 +17,18 @@ public class Fonts {
 	public static final int BOLD = java.awt.Font.BOLD;
 	public static final int ITALIC = java.awt.Font.ITALIC;
 	public static Font arial12;
+	public static Font sfr24, sfr48;
 
 	/**
 	 * Lädt Schriftarten.
 	 */
 	public static void load() {
 
+		createFont("ShrimpFriedRiceNo1");
+		
 		arial12 = loadFont("Arial", PLAIN, 12);
+		sfr24 = loadFont("ShrimpFriedRiceNo1", PLAIN, 24);
+		sfr48 = loadFont("ShrimpFriedRiceNo1", PLAIN, 48);
 	}
 
 	/**

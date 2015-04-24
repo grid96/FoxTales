@@ -1,11 +1,6 @@
 package main;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.GLU.gluOrtho2D;
-
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL12;
 
 import static main.Main.*;
 
@@ -22,6 +17,9 @@ public class Game extends Screen {
 	public float width, height;
 	public float x0, y0, x1, y1;
 	public Console console;
+	public Inventory inventory;
+	public boolean inInventory;
+	public Script script;
 
 	public Text test = new Text(Fonts.arial12, "test");
 
@@ -32,17 +30,16 @@ public class Game extends Screen {
 	 */
 	public Game() {
 
+		super();
+
 		resize();
 
-		level = new Level1();
+		level = new Level0();
 		fox = new Fox(level);
-		console = new Console(20, Main.height - 220, 300, 200);
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+		inventory = new Inventory();
+		// console = new Console(20, Main.height - 220, 300, 200);
+		
+		inventory.add(Item.fruit);
 	}
 
 	/**
@@ -50,7 +47,9 @@ public class Game extends Screen {
 	 */
 	public void update() {
 
-		console.update();
+		level.update();
+		
+		// console.update();
 		fox.update();
 		x = fox.x;
 		y = fox.y - 2.5f;
@@ -69,8 +68,14 @@ public class Game extends Screen {
 			y = level.height - height / 2;
 		}
 
-		if (updates % 60 == 0) {
-			console.addMessage("test", 0xFFFFFFFF);
+		// if (updates % 60 == 0) {
+		// console.addMessage("test", 0xFFFFFFFF);
+		// }
+		
+		inventory.update();
+		
+		if (updates % 150 == 0) {
+			level.particles.add(new Thought("Ich denke also bin ich.", fox.x, fox.y - 2, level));
 		}
 	}
 
@@ -79,9 +84,7 @@ public class Game extends Screen {
 	 */
 	public void render() {
 
-		glClearColor(0.8f, 0.9f, 1.0f, 1f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		prerender();
 
 		x0 = x - width / 2;
 		x1 = x + width / 2;
@@ -91,11 +94,13 @@ public class Game extends Screen {
 
 		level.render(x0, y0, x1, y1);
 		fox.render();
+		level.renderOverlay(x0, y0, x1, y1);
 
 		setOrtho2D(0, 0, Main.width, Main.height);
+		inventory.render();
 		// console.render();
 
-		Display.update();
+		postrender();
 	}
 
 	/**
@@ -105,26 +110,5 @@ public class Game extends Screen {
 
 		height = 10f;
 		width = height * resolution;
-	}
-
-	/**
-	 * Setzt die Kamera.
-	 * 
-	 * @param x0
-	 *            links
-	 * @param y0
-	 *            oben
-	 * @param x1
-	 *            rechts
-	 * @param y1
-	 *            unten
-	 */
-	public void setOrtho2D(float x0, float y0, float x1, float y1) {
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		gluOrtho2D(x0, x1, y1, y0);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
 	}
 }
