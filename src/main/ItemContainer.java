@@ -1,62 +1,38 @@
 package main;
 
+import java.util.Vector;
+
 public class ItemContainer {
 
-	public ItemSlot[] slots;
-	
-	public ItemContainer(int size) {
+	public Vector<Item> items;
+
+	public ItemContainer() {
 		
-		slots = new ItemSlot[size];
+		items = new Vector<>();
 	}
 	
-	public boolean add(Item item) {
+	public void add(Item item) {
 		
-		return add(new ItemSlot(item));
+		items.add(item);
 	}
 	
-	public boolean add(ItemSlot slot) {
+	public void remove(Item item) {
 		
-		for (int i = 0; i < slots.length; i++) {
-			if (slots[i] == null) {
-				slots[i] = slot;
-				return true;
-			}
-		}
-		return false;
+		items.remove(item);
 	}
 	
-	public boolean remove(Item item) {
+	public int indexOf(Item item) {
 		
-		for (int i = 0; i < slots.length; i++) {
-			if (slots[i] != null && slots[i].item == item) {
-				slots[i] = null;
-				return true;
-			}
-		}
-		return false;
+		return items.indexOf(item);
 	}
 	
-	public boolean remove(ItemSlot slot) {
+	public Item get(int i) {
 		
-		for (int i = 0; i < slots.length; i++) {
-			if (slots[i] == slot) {
-				slots[i] = null;
-				return true;
-			}
-		}
-		return false;
+		return items.get(i);
 	}
 	
 	public int size() {
 		
-		return slots.length;
-	}
-	
-	public ItemSlot get(int i) {
-		
-		if (i < size()) {
-			return slots[i];
-		}
-		return null;
+		return items.size();
 	}
 }

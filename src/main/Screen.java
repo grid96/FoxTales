@@ -6,6 +6,8 @@ import static org.lwjgl.util.glu.GLU.gluOrtho2D;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL12;
 
+import static main.Main.*;
+
 /**
  * Anzeige
  * 
@@ -40,6 +42,10 @@ public abstract class Screen {
 	
 	public void postrender() {
 		
+		if (fpsCounter) {
+			setOrtho2D(0, 0, width, height);
+			Fonts.arial12.drawString(3, 0, "" + fps);
+		}
 		Display.update();
 	}
 	

@@ -11,6 +11,8 @@ import static main.Main.*;
  */
 public class Game extends Screen {
 
+	public static Game ths;
+
 	public Level level;
 	public Fox fox;
 	public float x, y;
@@ -20,8 +22,9 @@ public class Game extends Screen {
 	public Inventory inventory;
 	public boolean inInventory;
 	public Script script;
+	public Interactive mouseOver;
 
-	public Text test = new Text(Fonts.arial12, "test");
+	// public Text test = new Text(Fonts.arial12, "test");
 
 	/**
 	 * OpenGL Einstellungen vornehmen und Level laden
@@ -32,14 +35,19 @@ public class Game extends Screen {
 
 		super();
 
+		ths = this;
+
 		resize();
 
 		level = new Level0();
 		fox = new Fox(level);
 		inventory = new Inventory();
 		// console = new Console(20, Main.height - 220, 300, 200);
-		
-		inventory.add(Item.fruit);
+
+		inventory.add(new Fruit());
+
+		level.entities.add(new DroppedItem(new Stone(), 20, 15, 1, 1, level));
+		// script = new PickUp((DroppedItem) level.entities.get(0));
 	}
 
 	/**
@@ -47,10 +55,15 @@ public class Game extends Screen {
 	 */
 	public void update() {
 
+		if (script != null) {
+			script.update();
+		}
+
 		level.update();
-		
+
 		// console.update();
 		fox.update();
+
 		x = fox.x;
 		y = fox.y - 2.5f;
 		y += 5f * ((float) (Main.height - Mouse.getY()) / Main.height - 0.5f);
@@ -71,11 +84,19 @@ public class Game extends Screen {
 		// if (updates % 60 == 0) {
 		// console.addMessage("test", 0xFFFFFFFF);
 		// }
-		
+
 		inventory.update();
-		
+
 		if (updates % 150 == 0) {
 			level.particles.add(new Thought("Ich denke also bin ich.", fox.x, fox.y - 2, level));
+		}
+		
+		while (Mouse.next()) {
+			if (Mouse.getEventButtonState()) {
+				if (!inventory.click()) {
+					level.click();
+				}
+			}
 		}
 	}
 
@@ -110,5 +131,15 @@ public class Game extends Screen {
 
 		height = 10f;
 		width = height * resolution;
+	}
+
+	public float getMouseX() {
+
+		return level.getLevelX(x0 + (x1 - x0) * ((float) Mouse.getX() / Main.width));
+	}
+
+	public float getMouseY() {
+
+		return y0 + (y1 - y0) * ((float) (Main.height - Mouse.getY()) / Main.height);
 	}
 }

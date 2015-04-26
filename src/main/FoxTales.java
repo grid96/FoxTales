@@ -70,6 +70,10 @@ public class FoxTales extends Thread {
 		Textures.loadLevel0();
 		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
 		time = System.currentTimeMillis();
+		System.out.println("Loading Alpha Maps ... ");
+		AlphaMap.load();
+		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
+		time = System.currentTimeMillis();
 		System.out.println("Loading Cursors ... ");
 		Cursors.load();
 		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
@@ -121,6 +125,7 @@ public class FoxTales extends Thread {
 	public void render() {
 
 		screen.render();
+		Textures.setColor(1, 1, 1, 1);
 	}
 
 	/**

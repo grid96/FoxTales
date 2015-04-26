@@ -2,6 +2,7 @@ package main;
 
 import java.util.Vector;
 
+@SuppressWarnings("unused")
 public class Console {
 
 	private Text text = new Text(Fonts.arial12, "test");

@@ -13,7 +13,7 @@ import static main.Main.*;
 public class Fox {
 
 	public Level level;
-	public float x = 40, y = 15f;
+	public float x = 40, y = 17.99f;
 	public float vx, vy, ax, ay;
 	public boolean onGround;
 	public boolean mirrored;
@@ -27,41 +27,65 @@ public class Fox {
 
 	public void update() {
 
+		// System.out.println((int) (100 * x) / 100f + " " + (int) (100 * level.getNextX(20)) / 100f);
+
 		ax = 0;
 		ay = 0.01f;
-		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			if (onGround) {
-				vy = -0.2f;
-			}
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			if (vx > -0.1f) {
-				ax -= 0.02f;
-				if (vx < -0.1f) {
-					vx = -0.1f;
+		boolean right = false;
+
+		if (Game.ths.script == null) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+				if (onGround) {
+					vy = -0.2f;
 				}
 			}
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			if (vx < 0.1f) {
-				ax += 0.02f;
-				if (vx > 0.1f) {
-					vx = 0.1f;
+			if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+				if (vx > -0.1f) {
+					ax -= 0.02f;
+					if (vx < -0.1f) {
+						vx = -0.1f;
+					}
 				}
 			}
-		}
-		if (!Keyboard.isKeyDown(Keyboard.KEY_A) && !Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			if (vx > 0) {
-				ax -= 0.01f;
-				if (vx < 0.01f) {
-					ax = -vx;
+			if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+				if (vx < 0.1f) {
+					ax += 0.02f;
+					if (vx > 0.1f) {
+						vx = 0.1f;
+					}
 				}
 			}
-			if (vx < 0) {
-				ax += 0.01f; 
-				if (vx > -0.01f) {
-					ax = -vx;
+			if (!Keyboard.isKeyDown(Keyboard.KEY_A) && !Keyboard.isKeyDown(Keyboard.KEY_D)) {
+				if (vx > 0) {
+					ax -= 0.01f;
+					if (vx < 0.01f) {
+						ax = -vx;
+					}
 				}
+				if (vx < 0) {
+					ax += 0.01f;
+					if (vx > -0.01f) {
+						ax = -vx;
+					}
+				}
+			}
+		} else {
+			if (Game.ths.script.foxX < x) {
+				if (vx > -0.1f) {
+					ax -= 0.02f;
+					if (vx < -0.1f) {
+						vx = -0.1f;
+					}
+				}
+			}
+			if (Game.ths.script.foxX > x) {
+				if (vx < 0.1f) {
+					ax += 0.02f;
+					if (vx > 0.1f) {
+						vx = 0.1f;
+					}
+				}
+				right = true;
 			}
 		}
 
@@ -102,6 +126,13 @@ public class Fox {
 			}
 			vy = 0;
 			onGround = true;
+		}
+
+		if (Game.ths.script != null) {
+			if ((Game.ths.script.foxX > x && !right) || (Game.ths.script.foxX < x && right)) {
+				x = Game.ths.script.foxX;
+				vx = 0;
+			}
 		}
 	}
 
