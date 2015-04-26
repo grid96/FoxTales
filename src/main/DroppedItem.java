@@ -4,9 +4,9 @@ public class DroppedItem extends Entity {
 
 	public Item item;
 	
-	public DroppedItem(Item item, float x, float y, float w, float h, Level level) {
+	public DroppedItem(Item item, float x, float y, Level level) {
 		
-		super(item.texture, 6, x, y, w, h, level);
+		super(item.texture, 6, x, y, 1, 1, level);
 		this.item = item;
 	}
 	

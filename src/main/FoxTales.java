@@ -92,7 +92,7 @@ public class FoxTales extends Thread {
 		if (shortcut) {
 			setScreen(new Game());
 		} else {
-			setScreen(new MainMenu());
+			setScreen(new MainMenu(null));
 		}
 	}
 
@@ -113,9 +113,9 @@ public class FoxTales extends Thread {
 	 */
 	public void update() {
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
-			destroy();
-		}
+		// if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+		// destroy();
+		// }
 		screen.update();
 	}
 

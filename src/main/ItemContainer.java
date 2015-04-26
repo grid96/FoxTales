@@ -14,11 +14,13 @@ public class ItemContainer {
 	public void add(Item item) {
 		
 		items.add(item);
+		item.container = this;
 	}
 	
 	public void remove(Item item) {
 		
 		items.remove(item);
+		item.container = null;
 	}
 	
 	public int indexOf(Item item) {

@@ -37,8 +37,11 @@ public class Entity implements Interactive {
 		}
 	}
 	
-	public void clicked() {
+	public void click() {
 		
+	}
+	
+	public void interact(Item item) {
 		
 	}
 	
@@ -60,6 +63,6 @@ public class Entity implements Interactive {
 	}
 	
 	public void mouseOver() {
-		
+
 	}
 }

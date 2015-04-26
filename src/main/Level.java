@@ -74,7 +74,7 @@ public abstract class Level {
 	 */
 	public boolean collision(float x, float y, float w, float h) {
 
-		if (y + h >= 0.9f * height) {
+		if (y + h >= 0.925f * height) {
 			return true;
 		}
 		return false;

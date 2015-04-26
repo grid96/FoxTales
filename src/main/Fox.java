@@ -13,7 +13,8 @@ import static main.Main.*;
 public class Fox {
 
 	public Level level;
-	public float x = 40, y = 17.99f;
+	public float x = 40, y = 18.49f;
+	public float w = 4, h = 4;
 	public float vx, vy, ax, ay;
 	public boolean onGround;
 	public boolean mirrored;
@@ -22,7 +23,7 @@ public class Fox {
 	public Fox(Level level) {
 
 		this.level = level;
-		texture = Textures.testfox;
+		texture = Textures.foxSitting;
 	}
 
 	public void update() {
@@ -139,9 +140,9 @@ public class Fox {
 	public void render() {
 
 		if (mirrored) {
-			Textures.renderQuadMirrored(texture, x - 2.5f, y - 2.5f, 5, 2.5f);
+			Textures.renderQuadMirrored(texture, x - w / 2, y - h, w, h);
 		} else {
-			Textures.renderQuad(texture, x - 2.5f, y - 2.5f, 5, 2.5f);
+			Textures.renderQuad(texture, x - w / 2, y - h, w, h);
 		}
 	}
 }

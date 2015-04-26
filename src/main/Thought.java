@@ -22,6 +22,9 @@ public class Thought extends Particle {
 		if (time < 90) {
 			a = time / 90f;
 		}
+		if (time <= 0) {
+			text.destroy();
+		}
 	}
 	
 	public void render() {

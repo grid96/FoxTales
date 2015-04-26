@@ -1,5 +1,6 @@
 package main;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import static main.Main.*;
@@ -44,9 +45,6 @@ public class Game extends Screen {
 		inventory = new Inventory();
 		// console = new Console(20, Main.height - 220, 300, 200);
 
-		inventory.add(new Fruit());
-
-		level.entities.add(new DroppedItem(new Stone(), 20, 15, 1, 1, level));
 		// script = new PickUp((DroppedItem) level.entities.get(0));
 	}
 
@@ -87,14 +85,22 @@ public class Game extends Screen {
 
 		inventory.update();
 
-		if (updates % 150 == 0) {
-			level.particles.add(new Thought("Ich denke also bin ich.", fox.x, fox.y - 2, level));
-		}
+		// if (updates % 150 == 0) {
+		// think("Ich denke also bin ich.");
+		// }
 		
 		while (Mouse.next()) {
 			if (Mouse.getEventButtonState()) {
 				if (!inventory.click()) {
 					level.click();
+				}
+			}
+		}
+		
+		while (Keyboard.next()) {
+			if (Keyboard.getEventKeyState()) {
+				if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE) {
+					setScreen(new MainMenu(this));
 				}
 			}
 		}
@@ -141,5 +147,10 @@ public class Game extends Screen {
 	public float getMouseY() {
 
 		return y0 + (y1 - y0) * ((float) (Main.height - Mouse.getY()) / Main.height);
+	}
+	
+	public void think(String text) {
+	
+		level.particles.add(new Thought(text, fox.x, fox.y - 4f, level));
 	}
 }
