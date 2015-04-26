@@ -10,8 +10,9 @@ public class DroppedItem extends Entity {
 		this.item = item;
 	}
 	
-	public void clicked() {
+	public void click() {
 		
-		
+		Game.ths.inventory.add(((DroppedItem) Game.ths.mouseOver).item);
+		level.entities.remove(Game.ths.mouseOver);
 	}
 }

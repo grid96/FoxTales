@@ -10,7 +10,7 @@ public class Thought extends Particle {
 	public Thought(String text, float x, float y, Level level) {
 		
 		super(x, y, level);
-		this.text = new Text(Fonts.sfr24, text);
+		this.text = new Text(Fonts.sfr36, text);
 		this.text.setColor(0x000000);
 		time = 300;
 	}

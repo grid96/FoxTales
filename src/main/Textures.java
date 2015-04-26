@@ -29,7 +29,7 @@ public class Textures {
 			return;
 		}
 		logo = loadTexture("logo", false);
-		menuBackground = loadTexture("menuBackground", true);
+		menuBackground = loadTexture("menuBackground", false);
 		stone = loadTexture("stone", false);
 		fruit = loadTexture("fruit", false);
 		brokenFruit = loadTexture("brokenFruit", false);
@@ -46,7 +46,7 @@ public class Textures {
 		if (loadedLevel0) {
 			return;
 		}
-		testlevel = loadTexture("testlevel", false);
+		testlevel = loadTexture("testlevel", true);
 		testfox = loadTexture("testfox", false);
 		foxSitting = loadTexture("foxSitting", false);
 		apeSitting = loadTexture("apeSitting", false);

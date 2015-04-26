@@ -23,7 +23,7 @@ public class Game extends Screen {
 	public Inventory inventory;
 	public boolean inInventory;
 	public Script script;
-	public Interactive mouseOver;
+	public Entity mouseOver;
 
 	// public Text test = new Text(Fonts.arial12, "test");
 

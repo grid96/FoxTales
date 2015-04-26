@@ -35,10 +35,11 @@ public abstract class Level {
 	public boolean click() {
 		
 		if (Game.ths.mouseOver != null) {
-			if (Game.ths.mouseOver instanceof DroppedItem) {
-				Game.ths.inventory.add(((DroppedItem) Game.ths.mouseOver).item);
-				entities.remove(Game.ths.mouseOver);
-			}
+			Game.ths.mouseOver.click();
+			// if (Game.ths.mouseOver instanceof DroppedItem) {
+			// Game.ths.inventory.add(((DroppedItem) Game.ths.mouseOver).item);
+			// entities.remove(Game.ths.mouseOver);
+			// }
 			return true;
 		}
 		return false;
