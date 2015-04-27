@@ -14,6 +14,7 @@ public class Entity implements Interactive {
 	public float x, y;
 	public float w, h;
 	public int id;
+	public String take, look, talk;
 	
 	public Entity(Texture texture, int id, float x, float y, float w, float h, Level level) {
 		
@@ -35,6 +36,10 @@ public class Entity implements Interactive {
 		if (level.isVisible(this)) {
 			Textures.renderQuad(texture, level.getNextX(x) - w / 2, y - h, w, h);
 		}
+	}
+	
+	public void give(Item item) {
+		
 	}
 	
 	public void click() {
@@ -64,5 +69,20 @@ public class Entity implements Interactive {
 	
 	public void mouseOver() {
 
+	}
+	
+	public void take() {
+		
+		Game.ths.setText(take);
+	}
+	
+	public void look() {
+		
+		Game.ths.setText(look);
+	}
+	
+	public void talk() {
+		
+		Game.ths.setText(talk);
 	}
 }

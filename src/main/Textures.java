@@ -17,7 +17,7 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Textures {
 
-	public static Texture logo, menuBackground, testlevel, testfox, stone, fruit, brokenFruit, herbage, herbageFruit, foxSitting, apeSitting;
+	public static Texture logo, menuBackground, testlevel, testfox, stone, fruit, brokenFruit, herbage, herbageFruit, foxSitting, apeSitting, torii, herbagePlant;
 	public static boolean loaded, loadedLevel0;
 
 	/**
@@ -50,6 +50,8 @@ public class Textures {
 		testfox = loadTexture("testfox", false);
 		foxSitting = loadTexture("foxSitting", false);
 		apeSitting = loadTexture("apeSitting", false);
+		torii = loadTexture("torii", false);
+		herbagePlant = loadTexture("herbagePlant", false);
 		loadedLevel0 = true;
 	}
 

@@ -8,11 +8,21 @@ public class DroppedItem extends Entity {
 		
 		super(item.texture, 6, x, y, 1, 1, level);
 		this.item = item;
+		look = item.look;
+		take = item.take;
+		talk = item.talk;
 	}
 	
 	public void click() {
 		
 		Game.ths.inventory.add(((DroppedItem) Game.ths.mouseOver).item);
+		level.entities.remove(Game.ths.mouseOver);
+	}
+	
+	public void take() {
+		
+		super.take();
+		Game.ths.inventory.add(item);
 		level.entities.remove(Game.ths.mouseOver);
 	}
 }

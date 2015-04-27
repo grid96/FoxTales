@@ -7,6 +7,7 @@ public class Item implements Interactive {
 	public Texture texture;
 	public int id;
 	public ItemContainer container;
+	public String take, look, talk;
 	
 	public Item(Texture texture, int id) {
 		
@@ -20,6 +21,6 @@ public class Item implements Interactive {
 	}
 	
 	public void craft(Item item) {
-		
+
 	}
 }

@@ -4,7 +4,7 @@ import org.newdawn.slick.opengl.Texture;
 
 public class AlphaMap {
 
-	public static AlphaMap stone, fruit, brokenFruit, herbage, herbageFruit, apeSitting;
+	public static AlphaMap stone, fruit, brokenFruit, herbage, herbageFruit, apeSitting, torii;
 	
 	public boolean[][] alpha;
 	
@@ -42,6 +42,9 @@ public class AlphaMap {
 		if (texture == Textures.apeSitting) {
 			return apeSitting;
 		}
+		if (texture == Textures.torii) {
+			return torii;
+		}
 		return null;
 	}
 	
@@ -53,5 +56,6 @@ public class AlphaMap {
 		herbage = new AlphaMap(Textures.herbage);
 		herbageFruit = new AlphaMap(Textures.herbageFruit);
 		apeSitting = new AlphaMap(Textures.apeSitting);
+		torii = new AlphaMap(Textures.torii);
 	}
 }

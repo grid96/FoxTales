@@ -17,6 +17,8 @@ public class Sounds {
 	private static float soundVolume = 1;
 	private static float musicVolume = 1;
 	public static boolean loaded, loadedLevel0;
+	
+	public static Sound breaking, ripping, yawn;
 
 	/**
 	 * Lädt levelunabhängige Sounds.

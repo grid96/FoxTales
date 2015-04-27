@@ -37,4 +37,19 @@ public class ItemContainer {
 		
 		return items.size();
 	}
+	
+	public void replace(Item item0, Item item1) {
+		
+		items.set(items.indexOf(item0), item1);
+	}
+	
+	public boolean contains(int id) {
+		
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).id == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

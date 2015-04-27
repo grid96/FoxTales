@@ -19,7 +19,7 @@ public class Inventory {
 
 		mouseover = -1;
 		for (int i = 0; i < container.size(); i++) {
-			if (Mouse.getX() > width / 2 - 50 * container.size() + 100 * i + 10 && height - Mouse.getY() > height - 100 && Mouse.getX() < width / 2 - 50 * container.size() + 100 * i + 90 && height - Mouse.getY() < height - 20) {
+			if (Mouse.getX() > width / 2 - 50 * container.size() + 100 * i + 10 && height - Mouse.getY() > height - 120 && Mouse.getX() < width / 2 - 50 * container.size() + 100 * i + 90 && height - Mouse.getY() < height - 40) {
 				mouseover = i;
 			}
 		}
@@ -39,12 +39,12 @@ public class Inventory {
 
 		for (int i = 0; i < container.size(); i++) {
 			if (i == selected) {
-				Textures.renderColoredQuad(width / 2 - 50 * container.size() + 100 * i + 10, height - 100, 80, 80, 0, 0, 0, 0.4f);
+				Textures.renderColoredQuad(width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80, 0, 0, 0, 0.4f);
 			} else {
-				Textures.renderColoredQuad(width / 2 - 50 * container.size() + 100 * i + 10, height - 100, 80, 80, 0, 0, 0, 0.2f);
+				Textures.renderColoredQuad(width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80, 0, 0, 0, 0.2f);
 			}
 			if (container.get(i) != null) {
-				Textures.renderQuad(container.get(i).texture, width / 2 - 50 * container.size() + 100 * i + 10, height - 100, 80, 80);
+				Textures.renderQuad(container.get(i).texture, width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80);
 			}
 		}
 	}
