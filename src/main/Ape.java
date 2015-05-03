@@ -8,6 +8,7 @@ public class Ape extends Entity {
 	public String talk2 = "Affe: Das ist mein Tor, suche dir ein eigenes.";
 	public String talk3 = "Fuchs: Beiseite, du Drecksschleuder!";
 	public int dialog = 0;
+	public boolean hasStone = true;
 	
 	public Ape(float x, float y, Level level) {
 
@@ -29,7 +30,15 @@ public class Ape extends Entity {
 			}
 			if (dialog == 0) {
 				Game.ths.setText(talk3);
+				throwStone();
 			}
+		}
+	}
+	
+	public void throwStone() {
+		
+		if (hasStone) {
+			level.entities.add(new DroppedItem(new Stone(), 70, 16.5f, level));
 		}
 	}
 
@@ -58,10 +67,13 @@ public class Ape extends Entity {
 		dialog = 361;
 	}
 	
-	public void craft(Item item) {
+	public void give(Item item) {
 
 		if (item instanceof Stone) {
 			// TODO throwing stones
+			item.container.remove(item);
+			hasStone = true;
+			throwStone();
 		}
 		if (item instanceof Fruit) {
 			Game.ths.setText("Affe: Ich kann das so nicht essen.");
@@ -71,9 +83,13 @@ public class Ape extends Entity {
 		}
 		if (item instanceof HerbageFruit) {
 			// TODO ape movement
+			item.container.remove(item);
+			Game.ths.setText("GAME OVER");
 			Sounds.play(Sounds.breaking);
 		}
 		if (item instanceof BrokenFruit) {
+			item.container.remove(item);
+			level.entities.add(new DroppedItem(new Fruit(), 65, 16, level));
 			Game.ths.setText("Affe: Lecker! Könnte ein bisschen mehr gewürzt sein.");
 		}
 	}

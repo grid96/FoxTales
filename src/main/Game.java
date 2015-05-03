@@ -109,7 +109,8 @@ public class Game extends Screen {
 
 		if (textVanish > 0) {
 			if (textVanish < 120) {
-				text.setColor(0x010000 * (int) (0xFF * (textVanish / 120f)) + 0x000100 * (int) (0xFF * (textVanish / 120f)) + 0x000001 * (int) (0xFF * (textVanish / 120f)));
+				// text.setColor(0x010000 * (int) (0xFF * (textVanish / 120f)) + 0x000100 * (int) (0xFF * (textVanish / 120f)) + 0x000001 * (int) (0xFF * (textVanish / 120f)));
+				text.setAlpha(textVanish / 120f);
 			}
 			textVanish--;
 			if (textVanish <= 0) {
@@ -124,12 +125,17 @@ public class Game extends Screen {
 					// level.click();
 					if (mouseOver != null) {
 						if (Mouse.getEventButton() == 0) {
-							mouseOver.take();
+							if (inventory.selected != -1) {
+								mouseOver.give(inventory.container.get(inventory.selected));
+							} else {
+								mouseOver.take();
+							}
 						}
 						if (Mouse.getEventButton() == 1) {
 							mouseOver.talk();
 						}
 					}
+					inventory.selected = -1;
 				}
 			}
 		}
@@ -170,7 +176,8 @@ public class Game extends Screen {
 
 	public void renderText() {
 
-		Textures.renderColoredQuad(0, Main.height - 30, Main.width, 30, 0, 0, 0, 1);
+		Textures.setColor(1, 1, 1, 1);
+		Textures.renderQuad(Textures.textbar, 0, Main.height - 30, Main.width, 30);
 		if (text != null) {
 			text.renderCenter(Main.width / 2, Main.height - 32, 0, (int) text.width, (int) text.height, 0, 0, 0);
 		}
@@ -209,7 +216,7 @@ public class Game extends Screen {
 			this.text.destroy();
 		}
 		this.text = new Text(Fonts.sfr36, text);
-		this.text.setColor(0xFFFFFF);
+		this.text.setColor(0x000000);
 		textVanish = 300;
 	}
 }

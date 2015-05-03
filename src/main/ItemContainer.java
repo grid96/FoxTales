@@ -41,6 +41,7 @@ public class ItemContainer {
 	public void replace(Item item0, Item item1) {
 		
 		items.set(items.indexOf(item0), item1);
+		item1.container = this;
 	}
 	
 	public boolean contains(int id) {

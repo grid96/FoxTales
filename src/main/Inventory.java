@@ -39,12 +39,15 @@ public class Inventory {
 
 		for (int i = 0; i < container.size(); i++) {
 			if (i == selected) {
-				Textures.renderColoredQuad(width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80, 0, 0, 0, 0.4f);
+				Textures.setColor(0.8f, 0.8f, 0.8f, 0.8f);
+				Textures.renderQuad(Textures.itemSlot, width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80);
 			} else {
-				Textures.renderColoredQuad(width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80, 0, 0, 0, 0.2f);
+				Textures.setColor(1, 1, 1, 0.8f);
+				Textures.renderQuad(Textures.itemSlot, width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80);
 			}
 			if (container.get(i) != null) {
-				Textures.renderQuad(container.get(i).texture, width / 2 - 50 * container.size() + 100 * i + 10, height - 120, 80, 80);
+				Textures.setColor(1, 1, 1, 1);
+				Textures.renderQuad(container.get(i).texture, width / 2 - 50 * container.size() + 100 * i + 18, height - 112, 64, 64);
 			}
 		}
 	}
@@ -57,7 +60,18 @@ public class Inventory {
 	public boolean click() {
 
 		if (Mouse.getEventButton() == 0) {
-			selected = mouseover;
+			if (mouseover != -1) {
+				if (selected != -1 && selected != mouseover) {
+					int size = container.size();
+					container.get(mouseover).craft(container.get(selected));
+					if (container.size() == size) {
+						container.get(selected).craft(container.get(mouseover));
+					}
+					selected = -1;
+				} else {
+					selected = mouseover;
+				}
+			}
 		}
 		if (Mouse.getEventButton() == 1) {
 			selected = -1;

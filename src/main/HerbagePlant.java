@@ -20,7 +20,7 @@ public class HerbagePlant extends DroppedItem {
 		}
 	}
 	
-	public void craft(Item item) {
+	public void give(Item item) {
 
 		if (item instanceof Stone) {
 			take();

@@ -13,7 +13,6 @@ public class Fruit extends Item {
 	public void craft(Item item) {
 
 		if (item instanceof Stone) {
-			item.container.remove(item);
 			container.replace(this, new BrokenFruit());
 			Sounds.play(Sounds.breaking);
 		}

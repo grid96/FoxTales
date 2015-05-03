@@ -25,4 +25,9 @@ public class DroppedItem extends Entity {
 		Game.ths.inventory.add(item);
 		level.entities.remove(Game.ths.mouseOver);
 	}
+	
+	public void give(Item item) {
+		
+		take();
+	}
 }

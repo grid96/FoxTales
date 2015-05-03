@@ -20,15 +20,15 @@ public class MainMenu extends Screen {
 		super();
 		this.game = game;
 		if (game == null) {
-			buttons[0] = new Text(Fonts.sfr48, "Tutorial spielen");
+			buttons[0] = new Text(Fonts.wr36, "Tutorial spielen");
 			buttons[0].setColor(0x000000);
 		} else {
-			buttons[0] = new Text(Fonts.sfr48, "Spiel fortsetzen");
+			buttons[0] = new Text(Fonts.wr36, "Spiel fortsetzen");
 			buttons[0].setColor(0x000000);
 		}
-		buttons[1] = new Text(Fonts.sfr48, "Optionen");
+		buttons[1] = new Text(Fonts.wr36, "Optionen");
 		buttons[1].setColor(0x000000);
-		buttons[2] = new Text(Fonts.sfr48, "Beenden");
+		buttons[2] = new Text(Fonts.wr36, "Beenden");
 		buttons[2].setColor(0x000000);
 	}
 
@@ -36,7 +36,7 @@ public class MainMenu extends Screen {
 
 		focus = -1;
 		for (int i = 0; i < buttons.length; i++) {
-			if (Mouse.getX() > (width - buttons[i].width) / 2 && Mouse.getX() < (width + buttons[i].width) / 2 && height - Mouse.getY() > (height - buttons[i].height) / 2 + 50 * i && height - Mouse.getY() < (height + buttons[i].height) / 2 + 50 * i) {
+			if (Mouse.getX() > width / 2 - 120 && Mouse.getX() < width / 2 + 120 && height - Mouse.getY() > height / 2 - buttons[i].height / 2 + 80 * i - 30 && height - Mouse.getY() < height / 2 - buttons[i].height / 2 + 80 * i + 30) {
 				focus = i;
 			}
 		}
@@ -69,9 +69,16 @@ public class MainMenu extends Screen {
 		setOrtho2D(0, 0, width, height);
 		for (int i = 0; i < buttons.length; i++) {
 			if (focus == i) {
-				buttons[i].renderCenter(width / 2, height / 2 - buttons[i].height / 2 + 50 * i, 0, buttons[i].width * (1 + 0.05f * sin(2 * updates)), buttons[i].height * (1 + 0.05f * sin(2 * updates)), 0, 0, 0);
+				Textures.renderQuad(Textures.button, width / 2 - 120 * (1 + 0.05f * sin(2 * updates)), height / 2 - buttons[i].height / 2 + 80 * i - 30 * (1 + 0.05f * sin(2 * updates)), 240 * (1 + 0.05f * sin(2 * updates)), 60 * (1 + 0.05f * sin(2 * updates)));
 			} else {
-				buttons[i].renderCenter(width / 2, height / 2 - buttons[i].height / 2 + 50 * i);
+				Textures.renderQuad(Textures.button, width / 2 - 120, height / 2 - buttons[i].height / 2 + 80 * i - 30, 240, 60);
+			}
+		}
+		for (int i = 0; i < buttons.length; i++) {
+			if (focus == i) {
+				buttons[i].renderCenter(width / 2, height / 2 - buttons[i].height / 2 + 80 * i - 25, 0, buttons[i].width * (1 + 0.05f * sin(2 * updates)), buttons[i].height * (1 + 0.05f * sin(2 * updates)), 0, 0, 0);
+			} else {
+				buttons[i].renderCenter(width / 2, height / 2 - buttons[i].height / 2 + 80 * i - 25);
 			}
 		}
 

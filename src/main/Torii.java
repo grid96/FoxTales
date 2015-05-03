@@ -10,7 +10,7 @@ public class Torii extends Entity {
 		talk = "Einige Leute reden mit sich selbst, andere mit totem Stein.";
 	}
 	
-	public void craft(Item item) {
+	public void give(Item item) {
 
 		if (item instanceof Stone) {
 			Game.ths.setText("Es besteht schon aus Stein.");

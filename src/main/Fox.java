@@ -19,6 +19,7 @@ public class Fox {
 	public boolean onGround;
 	public boolean mirrored;
 	public Texture texture;
+	public int idle;
 
 	public Fox(Level level) {
 
@@ -29,17 +30,17 @@ public class Fox {
 	public void update() {
 
 		// System.out.println((int) (100 * x) / 100f + " " + (int) (100 * level.getNextX(20)) / 100f);
-
+		
 		ax = 0;
 		ay = 0.01f;
 		boolean right = false;
 
 		if (Game.ths.script == null) {
-			if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-				if (onGround) {
-					vy = -0.2f;
-				}
-			}
+			// if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			// if (onGround) {
+			// vy = -0.2f;
+			// }
+			// }
 			if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
 				if (vx > -0.1f) {
 					ax -= 0.02f;
@@ -99,6 +100,12 @@ public class Fox {
 		if (vx < 0) {
 			mirrored = true;
 		}
+		
+		if (vx == 0) {
+			idle++;
+		} else {
+			idle = 0;
+		}
 
 		float x = this.x - 2.5f;
 		float y = this.y - 2.5f;
@@ -139,10 +146,24 @@ public class Fox {
 
 	public void render() {
 
+		getTexture();
 		if (mirrored) {
 			Textures.renderQuadMirrored(texture, x - w / 2, y - h, w, h);
 		} else {
 			Textures.renderQuad(texture, x - w / 2, y - h, w, h);
+		}
+	}
+	
+	public void getTexture() {
+		
+		if (idle >= 240) {
+			texture = Textures.foxSitting;
+		} else {
+			if (idle > 0) {
+				texture = Textures.foxStanding;
+			} else {
+				texture = Textures.foxWalking[(updates / 10) % Textures.foxWalking.length];
+			}
 		}
 	}
 }

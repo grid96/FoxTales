@@ -18,6 +18,7 @@ public class Fonts {
 	public static final int ITALIC = java.awt.Font.ITALIC;
 	public static Font arial12;
 	public static Font sfr24, sfr36, sfr48;
+	public static Font wr36;
 
 	/**
 	 * Lädt Schriftarten.
@@ -25,11 +26,13 @@ public class Fonts {
 	public static void load() {
 
 		createFont("ShrimpFriedRiceNo1");
+		createFont("WolfsRain");
 		
 		arial12 = loadFont("Arial", PLAIN, 12);
 		sfr24 = loadFont("ShrimpFriedRiceNo1", PLAIN, 24);
 		sfr36 = loadFont("ShrimpFriedRiceNo1", PLAIN, 36);
 		sfr48 = loadFont("ShrimpFriedRiceNo1", PLAIN, 48);
+		wr36 = loadFont("WolfsRain", PLAIN, 36);
 	}
 
 	/**
