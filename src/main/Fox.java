@@ -13,7 +13,7 @@ import static main.Main.*;
 public class Fox {
 
 	public Level level;
-	public float x = 40, y = 18.49f;
+	public float x = 20, y = 14.5f;
 	public float w = 4, h = 4;
 	public float vx, vy, ax, ay;
 	public boolean onGround;
@@ -30,7 +30,7 @@ public class Fox {
 	public void update() {
 
 		// System.out.println((int) (100 * x) / 100f + " " + (int) (100 * level.getNextX(20)) / 100f);
-		
+
 		ax = 0;
 		ay = 0.01f;
 		boolean right = false;
@@ -100,7 +100,7 @@ public class Fox {
 		if (vx < 0) {
 			mirrored = true;
 		}
-		
+
 		if (vx == 0) {
 			idle++;
 		} else {
@@ -153,17 +153,17 @@ public class Fox {
 			Textures.renderQuad(texture, x - w / 2, y - h, w, h);
 		}
 	}
-	
+
 	public void getTexture() {
-		
+
 		if (idle >= 240) {
 			texture = Textures.foxSitting;
 		} else {
-			if (idle > 0) {
-				texture = Textures.foxStanding;
-			} else {
-				texture = Textures.foxWalking[(updates / 10) % Textures.foxWalking.length];
-			}
+			// if (idle > 0) {
+			texture = Textures.foxStanding;
+			// } else {
+			// texture = Textures.foxWalking[(updates / 10) % Textures.foxWalking.length];
+			// }
 		}
 	}
 }

@@ -9,12 +9,21 @@ public class Level0 extends Level {
 
 	public Level0() {
 		
-		texture = Textures.testlevel;
-		width = 80;
+		background = Textures.background0;
+		foreground = Textures.foreground0;
+		width = 40;
 		height = 20;
 		
-		entities.add(new HerbagePlant(50, 17, this));
-		entities.add(new DroppedItem(new Fruit(), 65, 16, this));
-		entities.add(new Ape(75, 17.5f, this));
+		HerbagePlant plant = new HerbagePlant(10, 13, this);
+		plant.w = 1;
+		plant.h = 1;
+		entities.add(plant);
+		entities.add(new Ape(35, 8.5f, this));
+		dropFruit();
+	}
+	
+	public void dropFruit() {
+		
+		entities.add(new DroppedItem(new Fruit(), 20, 13, this));
 	}
 }

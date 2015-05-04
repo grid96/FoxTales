@@ -65,11 +65,13 @@ public class Game extends Screen {
 
 		// console.update();
 		fox.update();
+		
+		fox.y = 14.5f;
 
 		x = fox.x;
-		y = fox.y - 2.5f;
-		y += 5f * ((float) (Main.height - Mouse.getY()) / Main.height - 0.5f);
-		x += 5f * resolution * ((float) Mouse.getX() / Main.width - 0.5f);
+		y = fox.y - 5.5f;
+		y += 8f * ((float) (Main.height - Mouse.getY()) / Main.height - 0.5f);
+		x += 4f * resolution * ((float) Mouse.getX() / Main.width - 0.5f);
 		// if (x - width / 2 < 0) {
 		// x = width / 2;
 		// }
@@ -79,8 +81,8 @@ public class Game extends Screen {
 		// if (x + width / 2 > level.width) {
 		// x = level.width - width / 2;
 		// }
-		if (y + height / 2 > level.height) {
-			y = level.height - height / 2;
+		if (y + height / 2 > level.height * 0.775f) {
+			y = level.height * 0.775f - height / 2;
 		}
 
 		// if (updates % 60 == 0) {

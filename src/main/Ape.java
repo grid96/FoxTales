@@ -9,7 +9,7 @@ public class Ape extends Entity {
 	public String talk3 = "Fuchs: Beiseite, du Drecksschleuder!";
 	public int dialog = 0;
 	public boolean hasStone = true;
-	
+
 	public Ape(float x, float y, Level level) {
 
 		super(Textures.apeSitting, 7, x, y, 4, 4, level);
@@ -17,9 +17,9 @@ public class Ape extends Entity {
 		look = "Das ist ein dreckiger stinkender Affe.";
 		talk = "Fuchs: Du versperrst mir den Weg!";
 	}
-	
+
 	public void update() {
-	
+
 		if (dialog > 0) {
 			dialog--;
 			if (dialog == 360) {
@@ -34,11 +34,11 @@ public class Ape extends Entity {
 			}
 		}
 	}
-	
+
 	public void throwStone() {
-		
+
 		if (hasStone) {
-			level.entities.add(new DroppedItem(new Stone(), 70, 16.5f, level));
+			level.entities.add(new DroppedItem(new Stone(), 26, 13, level));
 		}
 	}
 
@@ -52,21 +52,21 @@ public class Ape extends Entity {
 			// Game.ths.think("Wer weiﬂ, wann er sich das letzte Mal gewaschen hat.");
 		}
 	}
-	
+
 	public void look() {
-		
+
 		if (random() < 0.5f) {
 			Game.ths.setText(look);
 		} else {
 			Game.ths.setText(look2);
 		}
 	}
-	
+
 	public void talk() {
-		
+
 		dialog = 361;
 	}
-	
+
 	public void give(Item item) {
 
 		if (item instanceof Stone) {
@@ -89,7 +89,7 @@ public class Ape extends Entity {
 		}
 		if (item instanceof BrokenFruit) {
 			item.container.remove(item);
-			level.entities.add(new DroppedItem(new Fruit(), 65, 16, level));
+			((Level0) level).dropFruit();
 			Game.ths.setText("Affe: Lecker! Kˆnnte ein bisschen mehr gew¸rzt sein.");
 		}
 	}
