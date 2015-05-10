@@ -88,7 +88,7 @@ public class FoxTales extends Thread {
 		System.out.println("... completed in " + (System.currentTimeMillis() - time) + " ms");
 
 		Mouse.setNativeCursor(Cursors.standard);
-
+		
 		if (shortcut) {
 			setScreen(new Game());
 		} else {

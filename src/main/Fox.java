@@ -13,13 +13,13 @@ import static main.Main.*;
 public class Fox {
 
 	public Level level;
-	public float x = 20, y = 14.5f;
-	public float w = 4, h = 4;
+	public float x = 1.25f, y = 14.5f;
+	public float w = 5, h = 5;
 	public float vx, vy, ax, ay;
 	public boolean onGround;
 	public boolean mirrored;
 	public Texture texture;
-	public int idle;
+	public int idle = 300;
 
 	public Fox(Level level) {
 
@@ -41,7 +41,7 @@ public class Fox {
 			// vy = -0.2f;
 			// }
 			// }
-			if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 				if (vx > -0.1f) {
 					ax -= 0.02f;
 					if (vx < -0.1f) {
@@ -49,7 +49,7 @@ public class Fox {
 					}
 				}
 			}
-			if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 				if (vx < 0.1f) {
 					ax += 0.02f;
 					if (vx > 0.1f) {

@@ -11,15 +11,15 @@ import org.lwjgl.input.Mouse;
  */
 public class MainMenu extends Screen {
 
-	public Game game;
+	public Screen screen;
 	public int focus = -1;
 	public Text[] buttons = new Text[3];
 
-	public MainMenu(Game game) {
+	public MainMenu(Screen screen) {
 
 		super();
-		this.game = game;
-		if (game == null) {
+		this.screen = screen;
+		if (screen == null) {
 			buttons[0] = new Text(Fonts.wr36, "Tutorial spielen");
 			buttons[0].setColor(0x000000);
 		} else {
@@ -44,10 +44,10 @@ public class MainMenu extends Screen {
 			if (Mouse.getEventButtonState()) {
 				if (Mouse.getEventButton() == 0) {
 					if (focus == 0) {
-						if (game == null) {
-							setScreen(new Game());
+						if (screen == null) {
+							setScreen(new Cutscene0());
 						} else {
-							setScreen(game);
+							setScreen(screen);
 						}
 					}
 					if (focus == 2) {

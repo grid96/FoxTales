@@ -28,6 +28,7 @@ public class Game extends Screen {
 	public int mouseOverCounter;
 	public Text text;
 	public int textVanish;
+	public int updates0;
 
 	// public Text test = new Text(Fonts.arial12, "test");
 
@@ -50,6 +51,8 @@ public class Game extends Screen {
 		// console = new Console(20, Main.height - 220, 300, 200);
 
 		// script = new PickUp((DroppedItem) level.entities.get(0));
+		
+		updates0 = updates;
 	}
 
 	/**
@@ -65,22 +68,28 @@ public class Game extends Screen {
 
 		// console.update();
 		fox.update();
-		
+
 		fox.y = 14.5f;
+		if (fox.x < -1.5f) {
+			fox.x = -1.5f;
+		}
+		if (fox.x > 37.5f) {
+			fox.x = 37.5f;
+		}
 
 		x = fox.x;
 		y = fox.y - 5.5f;
-		y += 8f * ((float) (Main.height - Mouse.getY()) / Main.height - 0.5f);
-		x += 4f * resolution * ((float) Mouse.getX() / Main.width - 0.5f);
-		// if (x - width / 2 < 0) {
-		// x = width / 2;
-		// }
+		// y += 8f * ((float) (Main.height - Mouse.getY()) / Main.height - 0.5f);
+		// x += 4f * resolution * ((float) Mouse.getX() / Main.width - 0.5f);
+		if (x - width / 2 < 0) {
+			x = width / 2;
+		}
 		if (y - height / 2 < 0) {
 			y = height / 2;
 		}
-		// if (x + width / 2 > level.width) {
-		// x = level.width - width / 2;
-		// }
+		if (x + width / 2 > level.width) {
+			x = level.width - width / 2;
+		}
 		if (y + height / 2 > level.height * 0.775f) {
 			y = level.height * 0.775f - height / 2;
 		}
@@ -88,6 +97,9 @@ public class Game extends Screen {
 		// if (updates % 60 == 0) {
 		// console.addMessage("test", 0xFFFFFFFF);
 		// }
+
+//		x = fox.x;
+		y = level.height * 0.393f;
 
 		inventory.update();
 
@@ -172,6 +184,10 @@ public class Game extends Screen {
 		inventory.render();
 		renderText();
 		// console.render();
+		
+		if (updates - updates0 < 90) {
+			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, 1 - (updates - updates0) / 90f);
+		}
 
 		postrender();
 	}
@@ -190,7 +206,7 @@ public class Game extends Screen {
 	 */
 	public void resize() {
 
-		height = 10f;
+		height = 15f * Main.height / (Main.height - 30f);
 		width = height * resolution;
 	}
 

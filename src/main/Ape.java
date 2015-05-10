@@ -12,7 +12,7 @@ public class Ape extends Entity {
 
 	public Ape(float x, float y, Level level) {
 
-		super(Textures.apeSitting, 7, x, y, 4, 4, level);
+		super(Textures.apeSitting, 7, x, y, 3, 3, level);
 		take = "Ew...!";
 		look = "Das ist ein dreckiger stinkender Affe.";
 		talk = "Fuchs: Du versperrst mir den Weg!";
@@ -38,7 +38,8 @@ public class Ape extends Entity {
 	public void throwStone() {
 
 		if (hasStone) {
-			level.entities.add(new DroppedItem(new Stone(), 26, 13, level));
+			level.entities.add(new FlyingStone(new Stone(), 25.5f, 12.5f, 0.5f, 0.5f, level));
+			hasStone = false;
 		}
 	}
 

@@ -1,6 +1,7 @@
 package main;
 
 import org.lwjgl.input.Cursor;
+import org.newdawn.slick.opengl.CursorLoader;
 
 /**
  * Cursor Verwaltung
@@ -10,12 +11,15 @@ import org.lwjgl.input.Cursor;
 public class Cursors {
 
 	public static Cursor standard;
-	
+
 	/**
 	 * Lädt Cursor.
 	 */
 	public static void load() {
-	
-		standard = null;
+
+		try {
+			standard = CursorLoader.get().getCursor("cursor.png", 1, 1);
+		} catch (Exception e) {
+		}
 	}
 }

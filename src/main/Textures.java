@@ -19,6 +19,7 @@ public class Textures {
 
 	public static Texture logo, menuBackground, background0, foreground0, stone, fruit, brokenFruit, herbage, herbageFruit, foxSitting, apeSitting, torii, herbagePlant, itemSlot, button, textbar, foxStanding;
 	public static Texture[] foxWalking;
+	public static Texture cutscene0, cutscene1, cutscene2;
 	public static boolean loaded, loadedLevel0;
 
 	/**
@@ -57,7 +58,10 @@ public class Textures {
 		foxWalking = loadTextures("foxWalking", 6, false);
 		apeSitting = loadTexture("apeSitting", false);
 		torii = loadTexture("torii", false);
-		herbagePlant = loadTexture("herbagePlant", false);
+		herbagePlant = loadTexture("herbage", false);
+		cutscene0 = loadTexture("cutscene0", false);
+		cutscene1 = loadTexture("cutscene1", false);
+		cutscene2 = loadTexture("cutscene2", false);
 		loadedLevel0 = true;
 	}
 

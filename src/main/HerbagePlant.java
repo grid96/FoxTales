@@ -2,10 +2,11 @@ package main;
 
 public class HerbagePlant extends DroppedItem {
 
-	public HerbagePlant(float x, float y, Level level) {
+	public HerbagePlant(float x, float y, float w, float h, Level level) {
 		
-		super(new Herbage(), x, y, level);
+		super(new Herbage(), x, y, w, h, level);
 		texture = Textures.herbagePlant;
+		alphaMap = null;
 		take = "";
 		look = "Das ist Nachtschatten. Das macht müde.";
 		talk = "Ihr habt ein schattiges Plätzchen.";
