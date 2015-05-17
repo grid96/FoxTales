@@ -15,10 +15,11 @@ import static main.Main.*;
 public class Sounds {
 
 	private static float soundVolume = 1;
-	private static float musicVolume = 1;
+	private static float musicVolume = 0.1f;
 	public static boolean loaded, loadedLevel0;
 	
 	public static Sound breaking, ripping, yawn;
+	public static Music music0;
 
 	/**
 	 * Lädt levelunabhängige Sounds.
@@ -28,6 +29,7 @@ public class Sounds {
 		if (loaded) {
 			return;
 		}
+		music0 = loadMusic("music0", false);
 		loaded = true;
 	}
 

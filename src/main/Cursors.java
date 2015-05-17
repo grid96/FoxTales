@@ -10,7 +10,7 @@ import org.newdawn.slick.opengl.CursorLoader;
  */
 public class Cursors {
 
-	public static Cursor standard;
+	public static Cursor standard, take, talk, look;
 
 	/**
 	 * Lädt Cursor.
@@ -19,6 +19,9 @@ public class Cursors {
 
 		try {
 			standard = CursorLoader.get().getCursor("cursor.png", 1, 1);
+			take = CursorLoader.get().getCursor("cursorTake.png", 1, 1);
+			talk = CursorLoader.get().getCursor("cursorTalk.png", 1, 1);
+			look = CursorLoader.get().getCursor("cursorLook.png", 1, 1);
 		} catch (Exception e) {
 		}
 	}

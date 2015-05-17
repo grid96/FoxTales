@@ -12,7 +12,7 @@ public class Cutscene0 extends Cutscene{
 	public Cutscene0() {
 	
 		updates0 = updates;
-		text1 = new Text(Fonts.sfr36, Fonts.wrap(Fonts.sfr36, "Wach auf, Fuchs! Es ist Zeitzu gehen. Vollbringe acht gute Taten und ich gew‰hre dir einen Wunsch, der dir viel Macht verleiht. Und ich weiﬂ, dass du bei dieser Aussicht nicht widerstehen kannst...", Main.width * 0.8f));
+		text1 = new Text(Fonts.sfr36, Fonts.wrap(Fonts.sfr36, "Wach auf, Fuchs! Es ist Zeit zu gehen. Vollbringe acht gute Taten und ich gew‰hre dir einen Wunsch, der dir viel Macht verleiht. Und ich weiﬂ, dass du bei dieser Aussicht nicht widerstehen kannst...", Main.width * 0.8f));
 		text2 = new Text(Fonts.sfr36, Fonts.wrap(Fonts.sfr36, "Ich kann dich nicht weiter begleiten. Meine Kraft schwindet, denn die Natur ist aus dem Gleichgewicht geraten und ich bin an diesen Wald gebunden.", Main.width * 0.8f));
 	}
 	

@@ -6,9 +6,12 @@ public class Ape extends Entity {
 
 	public String look2 = "Wer weiß, wann er sich das letzte Mal gewaschen hat.";
 	public String talk2 = "Affe: Das ist mein Tor, suche dir ein eigenes.";
-	public String talk3 = "Fuchs: Beiseite, du Drecksschleuder!";
+	public String talk3 = "Fuchs: Beiseite!";
 	public int dialog = 0;
 	public boolean hasStone = true;
+	public int colorApe = 0x4444CC;
+	public int colorFox = 0xAA2200;
+	public int lastThrow = -60;
 
 	public Ape(float x, float y, Level level) {
 
@@ -23,13 +26,13 @@ public class Ape extends Entity {
 		if (dialog > 0) {
 			dialog--;
 			if (dialog == 360) {
-				Game.ths.setText(talk);
+				Game.ths.setText(talk, colorFox);
 			}
 			if (dialog == 180) {
-				Game.ths.setText(talk2);
+				Game.ths.setText(talk2, colorApe);
 			}
 			if (dialog == 0) {
-				Game.ths.setText(talk3);
+				Game.ths.setText(talk3, colorFox);
 				throwStone();
 			}
 		}
@@ -38,7 +41,8 @@ public class Ape extends Entity {
 	public void throwStone() {
 
 		if (hasStone) {
-			level.entities.add(new FlyingStone(new Stone(), 25.5f, 12.5f, 0.5f, 0.5f, level));
+			lastThrow = updates;
+			level.entities.add(new FlyingStone(new Stone(), 25, 13.5f, 0.5f, 0.5f, level));
 			hasStone = false;
 		}
 	}
@@ -77,10 +81,10 @@ public class Ape extends Entity {
 			throwStone();
 		}
 		if (item instanceof Fruit) {
-			Game.ths.setText("Affe: Ich kann das so nicht essen.");
+			Game.ths.setText("Affe: Ich kann das so nicht essen.", colorApe);
 		}
 		if (item instanceof Herbage) {
-			Game.ths.setText("Affe: Ich kann das so nicht essen.");
+			Game.ths.setText("Affe: Ich kann das so nicht essen.", colorApe);
 		}
 		if (item instanceof HerbageFruit) {
 			// TODO ape movement
@@ -91,7 +95,28 @@ public class Ape extends Entity {
 		if (item instanceof BrokenFruit) {
 			item.container.remove(item);
 			((Level0) level).dropFruit();
-			Game.ths.setText("Affe: Lecker! Könnte ein bisschen mehr gewürzt sein.");
+			Game.ths.setText("Affe: Lecker! Könnte ein bisschen mehr gewürzt sein.", colorApe);
+		}
+	}
+	
+	public void render() {
+
+		getTexture();
+		Textures.renderQuad(texture, x - w / 2, y - h, w, h);
+	}
+
+	public void getTexture() {
+
+		if (updates - lastThrow < 15) {
+			texture = Textures.apeThrowing[0];
+		} else if (updates - lastThrow < 35) {
+			texture = Textures.apeThrowing[1];
+		} else if (updates - lastThrow < 50) {
+			texture = Textures.apeThrowing[2];
+		} else if (updates - lastThrow < 55) {
+			texture = Textures.apeThrowing[1];
+		} else {
+			texture = Textures.apeSitting;
 		}
 	}
 }

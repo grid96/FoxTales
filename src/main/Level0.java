@@ -21,6 +21,7 @@ public class Level0 extends Level {
 		// plant.h = 1;
 		entities.add(plant);
 		entities.add(new Ape(35, 2.5f, this));
+		entities.add(new Torii(32.8f, 2.3f, 6, 5, this));
 		dropFruit();
 	}
 	

@@ -29,6 +29,7 @@ public class Game extends Screen {
 	public Text text;
 	public int textVanish;
 	public int updates0;
+	public Tutorial tutorial;
 
 	// public Text test = new Text(Fonts.arial12, "test");
 
@@ -48,10 +49,11 @@ public class Game extends Screen {
 		level = new Level0();
 		fox = new Fox(level);
 		inventory = new Inventory();
+		tutorial = new Tutorial();
 		// console = new Console(20, Main.height - 220, 300, 200);
 
 		// script = new PickUp((DroppedItem) level.entities.get(0));
-		
+
 		updates0 = updates;
 	}
 
@@ -98,7 +100,7 @@ public class Game extends Screen {
 		// console.addMessage("test", 0xFFFFFFFF);
 		// }
 
-//		x = fox.x;
+		// x = fox.x;
 		y = level.height * 0.393f;
 
 		inventory.update();
@@ -108,6 +110,11 @@ public class Game extends Screen {
 			if (mouseOverCounter == 60) {
 				if (text == null || textVanish < 120) {
 					mouseOver.look();
+					Tutorial.look();
+					try {
+						Mouse.setNativeCursor(Cursors.look);
+					} catch (Exception e) {
+					}
 				} else {
 					mouseOverCounter--;
 				}
@@ -115,6 +122,18 @@ public class Game extends Screen {
 		} else {
 			mouseOverCounter = 0;
 		}
+		
+		try {
+			if (mouseOver != mouseOverLast) {
+				if (mouseOver != null) {
+					Mouse.setNativeCursor(Cursors.take);
+				} else {
+					Mouse.setNativeCursor(Cursors.standard);
+				}
+			}
+		} catch (Exception e) {
+		}
+		
 		mouseOverLast = mouseOver;
 
 		// if (updates % 150 == 0) {
@@ -141,12 +160,21 @@ public class Game extends Screen {
 						if (Mouse.getEventButton() == 0) {
 							if (inventory.selected != -1) {
 								mouseOver.give(inventory.container.get(inventory.selected));
+								Tutorial.give();
 							} else {
 								mouseOver.take();
+								Tutorial.take();
 							}
 						}
 						if (Mouse.getEventButton() == 1) {
 							mouseOver.talk();
+							Tutorial.talk();
+							if (mouseOver.talk != null || !mouseOver.talk.equals("")) {
+							try {
+								Mouse.setNativeCursor(Cursors.talk);
+							} catch (Exception e) {
+							}
+							}
 						}
 					}
 					inventory.selected = -1;
@@ -161,6 +189,8 @@ public class Game extends Screen {
 				}
 			}
 		}
+		
+		tutorial.update();
 	}
 
 	/**
@@ -183,8 +213,10 @@ public class Game extends Screen {
 		setOrtho2D(0, 0, Main.width, Main.height);
 		inventory.render();
 		renderText();
+		Textures.setColor(1, 1, 1, 1);
+		tutorial.render();
 		// console.render();
-		
+
 		if (updates - updates0 < 90) {
 			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, 1 - (updates - updates0) / 90f);
 		}
@@ -225,7 +257,7 @@ public class Game extends Screen {
 		level.particles.add(new Thought(text, fox.x, fox.y - 4f, level));
 	}
 
-	public void setText(String text) {
+	public void setText(String text, int color) {
 
 		if (text == null) {
 			return;
@@ -234,7 +266,12 @@ public class Game extends Screen {
 			this.text.destroy();
 		}
 		this.text = new Text(Fonts.sfr36, text);
-		this.text.setColor(0x000000);
+		this.text.setColor(color);
 		textVanish = 300;
+	}
+	
+	public void setText(String text) {
+
+		setText(text, 0x000000);
 	}
 }

@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
  */
 public class Main {
 
-	public static boolean fullscreen = false, vsync = false, antialiasing = true, shortcut = false, mute = false, debug = false;
-	public static boolean hd = false, compressedSounds = false, compressedTextures = false, bufferedText = true, fpsCounter = false;
+	public static boolean fullscreen = true, vsync = true, antialiasing = true, shortcut = false, mute = false, debug = false, tutorial = true;
+	public static boolean hd = true, compressedSounds = false, compressedTextures = false, bufferedText = true, fpsCounter = false;
 	public static int width = 1280, height = 720;
 	public static float resolution = (float) width / height;
 	public static int frames, updates;

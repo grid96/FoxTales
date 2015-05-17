@@ -48,6 +48,7 @@ public class Fox {
 						vx = -0.1f;
 					}
 				}
+				Tutorial.move();
 			}
 			if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 				if (vx < 0.1f) {
@@ -56,6 +57,7 @@ public class Fox {
 						vx = 0.1f;
 					}
 				}
+				Tutorial.move();
 			}
 			if (!Keyboard.isKeyDown(Keyboard.KEY_A) && !Keyboard.isKeyDown(Keyboard.KEY_D)) {
 				if (vx > 0) {
@@ -159,11 +161,11 @@ public class Fox {
 		if (idle >= 240) {
 			texture = Textures.foxSitting;
 		} else {
-			// if (idle > 0) {
-			texture = Textures.foxStanding;
-			// } else {
-			// texture = Textures.foxWalking[(updates / 10) % Textures.foxWalking.length];
-			// }
+			if (idle > 0) {
+				texture = Textures.foxStanding;
+			} else {
+				texture = Textures.foxWalking[(updates / 10) % Textures.foxWalking.length];
+			}
 		}
 	}
 }

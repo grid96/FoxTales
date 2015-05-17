@@ -15,6 +15,7 @@ public class Entity implements Interactive {
 	public float w, h;
 	public int id;
 	public String take, look, talk;
+	public int color = 0x000000;
 	
 	public Entity(Texture texture, int id, float x, float y, float w, float h, Level level) {
 		

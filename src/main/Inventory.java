@@ -67,6 +67,7 @@ public class Inventory {
 					if (container.size() == size) {
 						container.get(selected).craft(container.get(mouseover));
 					}
+					Tutorial.craft();
 					selected = -1;
 				} else {
 					selected = mouseover;
