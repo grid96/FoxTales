@@ -30,6 +30,7 @@ public class Game extends Screen {
 	public int textVanish;
 	public int updates0;
 	public Tutorial tutorial;
+	public int nextWaterSound = 300;
 
 	// public Text test = new Text(Fonts.arial12, "test");
 
@@ -122,7 +123,7 @@ public class Game extends Screen {
 		} else {
 			mouseOverCounter = 0;
 		}
-		
+
 		try {
 			if (mouseOver != mouseOverLast) {
 				if (mouseOver != null) {
@@ -133,7 +134,7 @@ public class Game extends Screen {
 			}
 		} catch (Exception e) {
 		}
-		
+
 		mouseOverLast = mouseOver;
 
 		// if (updates % 150 == 0) {
@@ -152,10 +153,16 @@ public class Game extends Screen {
 			}
 		}
 
+		nextWaterSound--;
+		if (nextWaterSound <= 0) {
+			Sounds.play(Sounds.water);
+			nextWaterSound = 600 + randomInt(300);
+		}
+
 		while (Mouse.next()) {
-			if (Mouse.getEventButtonState()) {
-				if (!inventory.click()) {
-					// level.click();
+			if (!inventory.click()) {
+				// level.click();
+				if (Mouse.getEventButtonState()) {
 					if (mouseOver != null) {
 						if (Mouse.getEventButton() == 0) {
 							if (inventory.selected != -1) {
@@ -170,10 +177,10 @@ public class Game extends Screen {
 							mouseOver.talk();
 							Tutorial.talk();
 							if (mouseOver.talk != null || !mouseOver.talk.equals("")) {
-							try {
-								Mouse.setNativeCursor(Cursors.talk);
-							} catch (Exception e) {
-							}
+								try {
+									Mouse.setNativeCursor(Cursors.talk);
+								} catch (Exception e) {
+								}
 							}
 						}
 					}
@@ -189,7 +196,7 @@ public class Game extends Screen {
 				}
 			}
 		}
-		
+
 		tutorial.update();
 	}
 
@@ -269,7 +276,7 @@ public class Game extends Screen {
 		this.text.setColor(color);
 		textVanish = 300;
 	}
-	
+
 	public void setText(String text) {
 
 		setText(text, 0x000000);

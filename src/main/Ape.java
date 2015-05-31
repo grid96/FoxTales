@@ -11,7 +11,7 @@ public class Ape extends Entity {
 	public boolean hasStone = true;
 	public int colorApe = 0x4444CC;
 	public int colorFox = 0xAA2200;
-	public int lastThrow = -60;
+	public int lastThrow = -90;
 
 	public Ape(float x, float y, Level level) {
 
@@ -36,13 +36,16 @@ public class Ape extends Entity {
 				throwStone();
 			}
 		}
+		if (updates - lastThrow == 50) {
+			level.entities.add(new FlyingStone(new Stone(), 35.75f, 0.25f, 0.25f, 0.25f, level));
+		}
 	}
 
 	public void throwStone() {
 
 		if (hasStone) {
 			lastThrow = updates;
-			level.entities.add(new FlyingStone(new Stone(), 25, 13.5f, 0.5f, 0.5f, level));
+			Sounds.play(Sounds.ape);
 			hasStone = false;
 		}
 	}
@@ -90,7 +93,7 @@ public class Ape extends Entity {
 			// TODO ape movement
 			item.container.remove(item);
 			Game.ths.setText("GAME OVER");
-			Sounds.play(Sounds.breaking);
+			Sounds.play(Sounds.fruit);
 		}
 		if (item instanceof BrokenFruit) {
 			item.container.remove(item);
@@ -114,7 +117,11 @@ public class Ape extends Entity {
 		} else if (updates - lastThrow < 50) {
 			texture = Textures.apeThrowing[2];
 		} else if (updates - lastThrow < 55) {
-			texture = Textures.apeThrowing[1];
+			texture = Textures.apeThrowing[3];
+		} else if (updates - lastThrow < 65) {
+			texture = Textures.apeThrowing[4];
+		} else if (updates - lastThrow < 85) {
+			texture = Textures.apeThrowing[5];
 		} else {
 			texture = Textures.apeSitting;
 		}

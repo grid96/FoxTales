@@ -19,22 +19,27 @@ public class Cutscene0 extends Cutscene{
 	public void update() {
 		
 		int time = updates - updates0;
+		if (time == 90) {
+			Sounds.play(Sounds.intro);
+		}
 		if (time == 120) {
 			text = text1;
 		}
-		if (time == 600) {
+		if (time == 750) {
 			text = text2;
 		}
-		if (time == 1020) {
+		if (time == 1200) {
 			text = null;
 		}
-		if (time == 1460) {
+		if (time == 1640) {
 			setScreen(new Game());
+			Sounds.stop(Sounds.intro);
 		}
 		while (Keyboard.next()) {
 			if (Keyboard.getEventKeyState()) {
 				if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE) {
 					setScreen(new Game());
+					Sounds.stop(Sounds.intro);
 				}
 			}
 		}
@@ -55,32 +60,32 @@ public class Cutscene0 extends Cutscene{
 			Textures.renderQuad(Textures.cutscene0, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
 		} else if (time < 300) {
 			Textures.renderQuad(Textures.cutscene0, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-		} else if (time < 420) {
+		} else if (time < 480) {
 			Textures.renderQuad(Textures.cutscene0, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-			Textures.setColor(1, 1, 1, (time - 300) / 120f);
+			Textures.setColor(1, 1, 1, (time - 300) / 180f);
 			Textures.renderQuad(Textures.cutscene1, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-		} else if (time < 600) {
+		} else if (time < 780) {
 			Textures.renderQuad(Textures.cutscene1, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-		} else if (time < 720) {
+		} else if (time < 900) {
 			Textures.renderQuad(Textures.cutscene1, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-			Textures.setColor(1, 1, 1, (time - 600) / 120f);
+			Textures.setColor(1, 1, 1, (time - 780) / 120f);
 			Textures.renderQuad(Textures.cutscene2, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-		} else if (time < 1020) {
+		} else if (time < 1200) {
 			Textures.renderQuad(Textures.cutscene2, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-		} else if (time < 1140) {
+		} else if (time < 1320) {
 			Textures.renderQuad(Textures.cutscene2, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, (time - 1020) / 480f);
-			Textures.setColor(1, 1, 1, (time - 1020) / 120f);
-			Textures.renderQuad(Textures.logo, Main.width / 2 - 256 * (1 + (time - 1020) / 720f), Main.height / 2 - 256 * (1 + (time - 1020) / 720f), 512 * (1 + (time - 1020) / 720f), 512 * (1 + (time - 1020) / 720f));
-		} else if (time < 1340) {
+			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, (time - 1200) / 480f);
+			Textures.setColor(1, 1, 1, (time - 1200) / 120f);
+			Textures.renderQuad(Textures.logo, Main.width / 2 - 256 * (1 + (time - 1200) / 900f), Main.height / 2 - 256 * (1 + (time - 1200) / 900f), 512 * (1 + (time - 1200) / 900f), 512 * (1 + (time - 1200) / 900f));
+		} else if (time < 1520) {
 			Textures.renderQuad(Textures.cutscene2, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
 			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, 0.25f);
-			Textures.renderQuad(Textures.logo, Main.width / 2 - 256 * (1 + (time - 1020) / 720f), Main.height / 2 - 256 * (1 + (time - 1020) / 720f), 512 * (1 + (time - 1020) / 720f), 512 * (1 + (time - 1020) / 720f));
+			Textures.renderQuad(Textures.logo, Main.width / 2 - 256 * (1 + (time - 1200) / 900f), Main.height / 2 - 256 * (1 + (time - 1200) / 900f), 512 * (1 + (time - 1200) / 900f), 512 * (1 + (time - 1200) / 900f));
 		} else {
 			Textures.renderQuad(Textures.cutscene2, 0, Main.height / 2 - Main.width / 4, Main.width, Main.width / 2);
-			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, 0.25f + (time - 1340) / 160f);
-			Textures.setColor(1, 1, 1, 1 - (time - 1340) / 120f);
-			Textures.renderQuad(Textures.logo, Main.width / 2 - 256 * (1 + (time - 1020) / 720f), Main.height / 2 - 256 * (1 + (time - 1020) / 720f), 512 * (1 + (time - 1020) / 720f), 512 * (1 + (time - 1020) / 720f));
+			Textures.renderColoredQuad(0, 0, Main.width, Main.height, 1, 1, 1, 0.25f + (time - 1520) / 160f);
+			Textures.setColor(1, 1, 1, 1 - (time - 1520) / 120f);
+			Textures.renderQuad(Textures.logo, Main.width / 2 - 256 * (1 + (time - 1200) / 900f), Main.height / 2 - 256 * (1 + (time - 1200) / 900f), 512 * (1 + (time - 1200) / 900f), 512 * (1 + (time - 1200) / 900f));
 		}
 		
 		renderText();

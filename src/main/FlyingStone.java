@@ -1,10 +1,33 @@
 package main;
 
+import static main.Main.*;
+
 public class FlyingStone extends DroppedItem {
 
+	public int updates0;
+	
 	public FlyingStone(Stone stone, float x, float y, float w, float h, Level level) {
 		
 		super(stone, x, y, w, h, level);
+		updates0 = updates;
+	}
+	
+	public void update() {
+	
+		if(updates - updates0 < 60) {
+			x = 36 - 11 * (updates - updates0) / 60f;
+			y = 0.161168f * x * x - 11.0235f * x + 188.358f;
+			w = 0.25f + 0.25f * (updates - updates0) / 60f;
+			h = w;
+		} else {
+			x = 25;
+			y = 13.5f;
+			w = 0.5f;
+			h = w;
+		}
+		if (updates - updates0 == 35) {
+			Sounds.play(Sounds.stone);
+		}
 	}
 
 	public void render() {

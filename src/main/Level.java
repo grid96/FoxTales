@@ -13,7 +13,8 @@ import static main.Main.*;
 public abstract class Level {
 
 	public float width, height;
-	public Texture background, foreground;
+	public Texture foreground;
+	public Texture[] background;
 	
 	public ArrayList<Entity> entities = new ArrayList<>();
 	public ArrayList<Particle> particles = new ArrayList<>();
@@ -47,7 +48,11 @@ public abstract class Level {
 
 	public void render(float x0, float y0, float x1, float y1) {
 
-		Textures.renderMapped(background, width, height, x0, y0, x1, y1);
+		Textures.setColor(1, 1, 1, 1);
+		Textures.renderMapped(background[(updates / 20) % background.length], width, height, x0, y0, x1, y1);
+		Textures.setColor(1, 1, 1, updates % 20 / 20f);
+		Textures.renderMapped(background[(updates / 20 + 1) % background.length], width, height, x0, y0, x1, y1);
+		Textures.setColor(1, 1, 1, 1);
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).render();
 		}

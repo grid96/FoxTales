@@ -17,7 +17,8 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Textures {
 
-	public static Texture logo, menuBackground, background0, foreground0, stone, fruit, brokenFruit, herbage, herbageFruit, foxSitting, apeSitting, torii, herbagePlant, itemSlot, button, textbar, foxStanding;
+	public static Texture logo, menuBackground, foreground0, stone, fruit, brokenFruit, herbage, herbageFruit, foxSitting, apeSitting, apeSittingWithout, herbagePlant, itemSlot, button, textbar, foxStanding;
+	public static Texture[] background0;
 	public static Texture[] foxWalking;
 	public static Texture[] apeThrowing;
 	public static Texture[] tutorial;
@@ -53,14 +54,14 @@ public class Textures {
 		if (loadedLevel0) {
 			return;
 		}
-		background0 = loadTexture("background0", true);
-		foreground0 = loadTexture("foreground0", true);
+		background0 = loadTextures("background0", 3, false);
+		foreground0 = loadTexture("foreground0", false);
 		foxSitting = loadTexture("foxSitting", false);
 		foxStanding = loadTexture("foxStanding", false);
 		foxWalking = loadTextures("foxWalking", 6, false);
 		apeSitting = loadTexture("apeSitting", false);
-		apeThrowing = loadTextures("apeThrowing", 3, false);
-		torii = loadTexture("torii", false);
+		apeSittingWithout = loadTexture("apeSittingWithout", false);
+		apeThrowing = loadTextures("apeThrowing", 6, false);
 		herbagePlant = loadTexture("herbage", false);
 		cutscene0 = loadTexture("cutscene0", false);
 		cutscene1 = loadTexture("cutscene1", false);

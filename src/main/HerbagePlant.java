@@ -17,7 +17,7 @@ public class HerbagePlant extends DroppedItem {
 		if (!Game.ths.inventory.container.contains(item.id)) {
 			Game.ths.inventory.add(new Herbage());
 			Game.ths.setText(take);
-			Sounds.play(Sounds.ripping);
+			Sounds.play(Sounds.herbage);
 		}
 	}
 	

@@ -4,7 +4,7 @@ public class Torii extends Entity {
 
 	public Torii(float x, float y, float w, float h, Level level) {
 		
-		super(Textures.torii, 8, x, y, w, h, level);
+		super(null, 8, x, y, w, h, level);
 		alphaMap = null;
 		take = "Es steht seit 1000 Jahren hier, ich will es nicht aus seinem Platz reiﬂen.";
 		look = "Das ist ein Tor. Normalerweise kann man hindurch gehen, nur h‰ngt dieser stinkige Affe da rum und versperrt mir den Weg.";

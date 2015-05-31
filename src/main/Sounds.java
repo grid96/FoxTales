@@ -14,11 +14,11 @@ import static main.Main.*;
  */
 public class Sounds {
 
-	private static float soundVolume = 1;
+	private static float soundVolume = 0.5f;
 	private static float musicVolume = 0.1f;
 	public static boolean loaded, loadedLevel0;
 	
-	public static Sound breaking, ripping, yawn;
+	public static Sound ape, fruit, stone, herbage, water, intro;
 	public static Music music0;
 
 	/**
@@ -29,7 +29,15 @@ public class Sounds {
 		if (loaded) {
 			return;
 		}
-		music0 = loadMusic("music0", false);
+		setMusicVolume(musicVolume);
+		setSoundVolume(soundVolume);
+		music0 = loadMusic("music", false);
+		ape = loadSound("ape", false);
+		fruit = loadSound("fruit", false);
+		stone = loadSound("stone", false);
+		herbage = loadSound("herbage", false);
+		water = loadSound("water", false);
+		intro = loadSound("intro", false);
 		loaded = true;
 	}
 
@@ -143,14 +151,21 @@ public class Sounds {
 			sound.play();
 		}
 	}
+	
+	public static void stop(Sound sound) {
 
-	public static void setSoundVolume(int volume) {
+		if (sound != null) {
+			sound.stop();
+		}
+	}
+
+	public static void setSoundVolume(float volume) {
 
 		soundVolume = volume;
 		SoundStore.get().setSoundVolume(soundVolume);
 	}
 
-	public static void setMusicVolume(int volume) {
+	public static void setMusicVolume(float volume) {
 
 		musicVolume = volume;
 	}

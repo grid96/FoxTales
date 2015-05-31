@@ -14,7 +14,7 @@ public class Fruit extends Item {
 
 		if (item instanceof Stone) {
 			container.replace(this, new BrokenFruit());
-			Sounds.play(Sounds.breaking);
+			Sounds.play(Sounds.fruit);
 		}
 		if (item instanceof Herbage) {
 			Game.ths.setText("So kann ich sie nicht zusammenfügen.");
