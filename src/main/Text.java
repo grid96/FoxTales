@@ -124,6 +124,7 @@ public class Text {
 		glVertex2f(width - x1, y0);
 		glEnd();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		Textures.logo.bind();
 	}
 
 	public void render(float x, float y, float z, float w, float h, float a, float xf, float yf) {
@@ -152,6 +153,7 @@ public class Text {
 		glRotatef(-a, 0, 0, 1);
 		glTranslatef(-(x + xf), -(y + yf), 0);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		Textures.logo.bind();
 	}
 	
 	public void setColor(int c) {

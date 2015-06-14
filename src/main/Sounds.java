@@ -14,12 +14,12 @@ import static main.Main.*;
  */
 public class Sounds {
 
-	private static float soundVolume = 0.5f;
-	private static float musicVolume = 0.1f;
+	private static float soundVolume = 1.0f;
+	private static float musicVolume = 0.2f;
 	public static boolean loaded, loadedLevel0;
 	
 	public static Sound ape, fruit, stone, herbage, water, intro;
-	public static Music music0;
+	public static Music titlemusic, music0;
 
 	/**
 	 * Lädt levelunabhängige Sounds.
@@ -31,7 +31,8 @@ public class Sounds {
 		}
 		setMusicVolume(musicVolume);
 		setSoundVolume(soundVolume);
-		music0 = loadMusic("music", false);
+		titlemusic = loadMusic("titlemusic", false);
+		music0 = loadMusic("music0", false);
 		ape = loadSound("ape", false);
 		fruit = loadSound("fruit", false);
 		stone = loadSound("stone", false);

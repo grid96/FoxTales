@@ -89,7 +89,7 @@ public class FoxTales extends Thread {
 
 		Mouse.setNativeCursor(Cursors.standard);
 		
-		Sounds.play(Sounds.music0);
+		Sounds.play(Sounds.titlemusic);
 		
 		if (shortcut) {
 			setScreen(new Game());
