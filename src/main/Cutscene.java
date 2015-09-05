@@ -1,5 +1,11 @@
 package main;
 
-public class Cutscene extends Screen {
+/**
+ * Cutscene-Screen
+ * 
+ * @author Colin Dömer
+ *
+ */
+public abstract class Cutscene extends Screen {
 
 }

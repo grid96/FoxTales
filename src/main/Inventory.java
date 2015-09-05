@@ -4,6 +4,11 @@ import static main.Main.*;
 
 import org.lwjgl.input.Mouse;
 
+/**
+ * Inventar
+ * 
+ * @author Colin Dömer
+ */
 public class Inventory {
 
 	public ItemContainer container;
@@ -17,6 +22,9 @@ public class Inventory {
 		container = new ItemContainer();
 	}
 
+	/**
+	 * prüft über welchem Inventar Slot sich die Maus befindet
+	 */
 	public void update() {
 
 		mouseover = -1;
@@ -25,18 +33,11 @@ public class Inventory {
 				mouseover = i;
 			}
 		}
-		// while (Mouse.next()) {
-		// if (Mouse.getEventButtonState()) {
-		// if (Mouse.getEventButton() == 0) {
-		// selected = mouseover;
-		// }
-		// if (Mouse.getEventButton() == 1) {
-		// selected = -1;
-		// }
-		// }
-		// }
 	}
 
+	/**
+	 * rendert das Inventar
+	 */
 	public void render() {
 
 		for (int i = 0; i < container.size(); i++) {
@@ -65,6 +66,12 @@ public class Inventory {
 		}
 	}
 
+	/**
+	 * fügt dem Inventar ein Item hinzu
+	 * 
+	 * @param item
+	 *            Item
+	 */
 	public void add(Item item) {
 
 		container.add(item);

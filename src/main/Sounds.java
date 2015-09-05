@@ -17,7 +17,7 @@ public class Sounds {
 	private static float soundVolume = 1.0f;
 	private static float musicVolume = 0.2f;
 	public static boolean loaded, loadedLevel0;
-	
+
 	public static Sound ape, fruit, stone, herbage, water, intro;
 	public static Music titlemusic, music0;
 
@@ -32,13 +32,6 @@ public class Sounds {
 		setMusicVolume(musicVolume);
 		setSoundVolume(soundVolume);
 		titlemusic = loadMusic("titlemusic", false);
-		music0 = loadMusic("music0", false);
-		ape = loadSound("ape", false);
-		fruit = loadSound("fruit", false);
-		stone = loadSound("stone", false);
-		herbage = loadSound("herbage", false);
-		water = loadSound("water", false);
-		intro = loadSound("intro", false);
 		loaded = true;
 	}
 
@@ -50,6 +43,13 @@ public class Sounds {
 		if (loadedLevel0) {
 			return;
 		}
+		music0 = loadMusic("music0", false);
+		ape = loadSound("ape", false);
+		fruit = loadSound("fruit", false);
+		stone = loadSound("stone", false);
+		herbage = loadSound("herbage", false);
+		water = loadSound("water", false);
+		intro = loadSound("intro", false);
 		loadedLevel0 = true;
 	}
 
@@ -152,7 +152,13 @@ public class Sounds {
 			sound.play();
 		}
 	}
-	
+
+	/**
+	 * Stoppt einen Sound.
+	 * 
+	 * @param sound
+	 *            zu stoppender Sound
+	 */
 	public static void stop(Sound sound) {
 
 		if (sound != null) {
@@ -160,12 +166,24 @@ public class Sounds {
 		}
 	}
 
+	/**
+	 * setzt die Soundlautstärke
+	 * 
+	 * @param volume
+	 *            Pegel
+	 */
 	public static void setSoundVolume(float volume) {
 
 		soundVolume = volume;
 		SoundStore.get().setSoundVolume(soundVolume);
 	}
 
+	/**
+	 * setzt die Musiklautstärke
+	 * 
+	 * @param volume
+	 *            Pegel
+	 */
 	public static void setMusicVolume(float volume) {
 
 		musicVolume = volume;

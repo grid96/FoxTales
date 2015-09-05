@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Stein
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class Stone extends Item {
 
 	public Stone() {

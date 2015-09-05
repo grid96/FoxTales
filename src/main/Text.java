@@ -157,15 +157,7 @@ public class Text {
 	}
 	
 	public void setColor(int c) {
-		
-		// int b = c % 0x100;
-		// int g = c % 0x10000 / 0x100;
-		// int r = c % 0x1000000 / 0x10000;
-		// int a = c / 0x1000000;
-		// this.a = a / 255f;
-		// this.r = r / 255f;
-		// this.g = g / 255f;
-		// this.b = b / 255f;
+
 		r = ((c & 0xFF0000) >> 16) / 255f;
 	    g = ((c & 0xFF00) >> 8) / 255f;
 	    b = (c & 0xFF) / 255f;

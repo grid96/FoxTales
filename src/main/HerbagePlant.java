@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Kräuterpflanze
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class HerbagePlant extends DroppedItem {
 
 	public HerbagePlant(float x, float y, float w, float h, Level level) {

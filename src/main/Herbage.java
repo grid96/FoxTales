@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Kräuter
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class Herbage extends Item {
 
 	public Herbage() {

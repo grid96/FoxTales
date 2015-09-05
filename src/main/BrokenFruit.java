@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Aufgebrochene Frucht
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class BrokenFruit extends Item {
 
 	public BrokenFruit() {

@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL12;
 import static main.Main.*;
 
 /**
- * Anzeige
+ * Screen
  * 
  * @author Colin Dömer
  */
@@ -32,6 +32,9 @@ public abstract class Screen {
 		
 	}
 	
+	/**
+	 * cleart das Display
+	 */
 	public void prerender() {
 		
 		glClearColor(0.8f, 0.9f, 1.0f, 1f);
@@ -40,6 +43,9 @@ public abstract class Screen {
 		glColor4f(1, 1, 1, 1);
 	}
 	
+	/**
+	 * updatet das Display
+	 */
 	public void postrender() {
 		
 		if (fpsCounter) {

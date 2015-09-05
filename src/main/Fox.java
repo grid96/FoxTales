@@ -27,69 +27,44 @@ public class Fox {
 		texture = Textures.foxSitting;
 	}
 
+	/**
+	 * Berechnet Geschwindigkeit des Fuchses, abhängig von den gedrückten Tasten, und bewegt dann den Fuchs wenn keine Kollision mit dem Level vorhanden ist. Falls keine bewegung Vorhanden wird die idle Zeit erhöht.
+	 */
 	public void update() {
-
-		// System.out.println((int) (100 * x) / 100f + " " + (int) (100 * level.getNextX(20)) / 100f);
 
 		ax = 0;
 		ay = 0.01f;
-		boolean right = false;
-
-		if (Game.ths.script == null) {
-			// if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			// if (onGround) {
-			// vy = -0.2f;
-			// }
-			// }
-			if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-				if (vx > -0.1f) {
-					ax -= 0.02f;
-					if (vx < -0.1f) {
-						vx = -0.1f;
-					}
-				}
-				Tutorial.move();
-			}
-			if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-				if (vx < 0.1f) {
-					ax += 0.02f;
-					if (vx > 0.1f) {
-						vx = 0.1f;
-					}
-				}
-				Tutorial.move();
-			}
-			if (!Keyboard.isKeyDown(Keyboard.KEY_A) && !Keyboard.isKeyDown(Keyboard.KEY_D)) {
-				if (vx > 0) {
-					ax -= 0.01f;
-					if (vx < 0.01f) {
-						ax = -vx;
-					}
-				}
-				if (vx < 0) {
-					ax += 0.01f;
-					if (vx > -0.01f) {
-						ax = -vx;
-					}
+		
+		if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+			if (vx > -0.1f) {
+				ax -= 0.02f;
+				if (vx < -0.1f) {
+					vx = -0.1f;
 				}
 			}
-		} else {
-			if (Game.ths.script.foxX < x) {
-				if (vx > -0.1f) {
-					ax -= 0.02f;
-					if (vx < -0.1f) {
-						vx = -0.1f;
-					}
+			Tutorial.move();
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+			if (vx < 0.1f) {
+				ax += 0.02f;
+				if (vx > 0.1f) {
+					vx = 0.1f;
 				}
 			}
-			if (Game.ths.script.foxX > x) {
-				if (vx < 0.1f) {
-					ax += 0.02f;
-					if (vx > 0.1f) {
-						vx = 0.1f;
-					}
+			Tutorial.move();
+		}
+		if (!Keyboard.isKeyDown(Keyboard.KEY_A) && !Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			if (vx > 0) {
+				ax -= 0.01f;
+				if (vx < 0.01f) {
+					ax = -vx;
 				}
-				right = true;
+			}
+			if (vx < 0) {
+				ax += 0.01f;
+				if (vx > -0.01f) {
+					ax = -vx;
+				}
 			}
 		}
 
@@ -132,20 +107,17 @@ public class Fox {
 				if (!level.collision(x, y + dy, w, h)) {
 					this.y += dy;
 					y = this.y - 2.5f;
+					System.out.println(y);
 				}
 			}
 			vy = 0;
 			onGround = true;
 		}
-
-		if (Game.ths.script != null) {
-			if ((Game.ths.script.foxX > x && !right) || (Game.ths.script.foxX < x && right)) {
-				x = Game.ths.script.foxX;
-				vx = 0;
-			}
-		}
 	}
 
+	/**
+	 * rendert den Fuchs
+	 */
 	public void render() {
 
 		getTexture();
@@ -156,6 +128,9 @@ public class Fox {
 		}
 	}
 
+	/**
+	 * Wählt die Textur für den Fuchs abhängig von der Bewegungsrichtung und der Idle Zeit.
+	 */
 	public void getTexture() {
 
 		if (idle >= 240) {

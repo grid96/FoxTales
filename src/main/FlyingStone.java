@@ -2,6 +2,12 @@ package main;
 
 import static main.Main.*;
 
+/**
+ * fliegender Stein (kann theoretisch in der Luft gefangen werden)
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class FlyingStone extends DroppedItem {
 
 	public int updates0;
@@ -12,6 +18,9 @@ public class FlyingStone extends DroppedItem {
 		updates0 = updates;
 	}
 	
+	/**
+	 * bewegt den Stein anhand seiner Flugkurve
+	 */
 	public void update() {
 	
 		if(updates - updates0 < 60) {

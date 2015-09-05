@@ -1,14 +1,23 @@
 package main;
 
 import static main.Main.*;
-
 import org.lwjgl.input.Keyboard;
-public class Cutscene0 extends Cutscene{
+
+/**
+ * Intro Cutscene
+ * 
+ * @author Colin Dömer
+ *
+ */
+public class Cutscene0 extends Cutscene {
 
 	public int updates0;
 	public Text text;
 	public Text text1, text2;
 	
+	/**
+	 * lädt die Texte für die Cutscene
+	 */
 	public Cutscene0() {
 	
 		updates0 = updates;
@@ -16,6 +25,9 @@ public class Cutscene0 extends Cutscene{
 		text2 = new Text(Fonts.sfr36, Fonts.wrap(Fonts.sfr36, "Ich kann dich nicht weiter begleiten. Meine Kraft schwindet, denn die Natur ist aus dem Gleichgewicht geraten und ich bin an diesen Wald gebunden.", Main.width * 0.8f));
 	}
 	
+	/**
+	 * updatet die Cutscene, startet den Intro Dialog Sound und skip bzw. beendet die Cutscene
+	 */
 	public void update() {
 		
 		int time = updates - updates0;
@@ -45,6 +57,9 @@ public class Cutscene0 extends Cutscene{
 		}
 	}
 	
+	/**
+	 * rendert das Bild für die Cutscene
+	 */
 	public void render() {
 		
 		super.prerender();
@@ -93,6 +108,9 @@ public class Cutscene0 extends Cutscene{
 		super.postrender();
 	}
 	
+	/**
+	 * render den Text für die Cutscene
+	 */
 	public void renderText() {
 
 		Textures.setColor(1, 1, 1, 1);

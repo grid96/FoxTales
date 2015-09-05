@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Torii
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class Torii extends Entity {
 
 	public Torii(float x, float y, float w, float h, Level level) {
@@ -35,7 +41,6 @@ public class Torii extends Entity {
 		if (level.getNextX(Game.ths.getMouseX()) > level.getNextX(x) && level.getNextX(Game.ths.getMouseX()) < level.getNextX(x) + w && Game.ths.getMouseY() > y && Game.ths.getMouseY() < y + h) {
 			if (alphaMap == null || alphaMap.hit((level.getNextX(Game.ths.getMouseX()) - (level.getNextX(x) - w / 2)) / w, (Game.ths.getMouseY() - (y - h)) / h)) {
 				Game.ths.mouseOver = this;
-				mouseOver();
 				return true;
 			}
 		}

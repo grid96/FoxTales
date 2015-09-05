@@ -83,9 +83,7 @@ public class Textures {
 
 		Texture texture = null;
 		try {
-			// long l = System.currentTimeMillis();
 			texture = TextureLoader.getTexture(((compressed && compressedTextures) ? "JPG" : "PNG"), ResourceLoader.getResourceAsStream(name + ((compressed && compressedTextures) ? ".jpg" : ".png")));
-			// System.out.println(System.currentTimeMillis() - l + " ms");
 		} catch (Exception e) {
 			try {
 				texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("missingTexture.png"));
@@ -145,19 +143,35 @@ public class Textures {
 		glVertex2f(x + w, y);
 		glEnd();
 	}
-	
+
+	/**
+	 * Zeichnet ein gefärbtes Rechteck
+	 * 
+	 * @param x
+	 *            Start X
+	 * @param y
+	 *            Start Y
+	 * @param w
+	 *            Breite
+	 * @param h
+	 *            Höhe
+	 * @param r
+	 *            Rot
+	 * @param g
+	 *            Grün
+	 * @param b
+	 *            Blau
+	 * @param a
+	 *            Alpha
+	 */
 	public static void renderColoredQuad(float x, float y, float w, float h, float r, float g, float b, float a) {
 
 		glDisable(GL_TEXTURE_2D);
 		glBegin(GL_QUADS);
 		glColor4f(r, g, b, a);
-		glTexCoord2f(0, 0);
 		glVertex2f(x, y);
-		glTexCoord2f(0, 1);
 		glVertex2f(x, y + h);
-		glTexCoord2f(1, 1);
 		glVertex2f(x + w, y + h);
-		glTexCoord2f(1, 0);
 		glVertex2f(x + w, y);
 		glColor4f(1, 1, 1, 1);
 		glEnd();
@@ -225,9 +239,21 @@ public class Textures {
 		glVertex2f(x1, y0);
 		glEnd();
 	}
-	
+
+	/**
+	 * Setzt die Zeichenfarbe.
+	 * 
+	 * @param r
+	 *            Rot
+	 * @param g
+	 *            Grün
+	 * @param b
+	 *            Blau
+	 * @param a
+	 *            Alpha
+	 */
 	public static void setColor(float r, float g, float b, float a) {
-		
+
 		glColor4f(r, g, b, a);
 	}
 }

@@ -4,6 +4,12 @@ import org.newdawn.slick.opengl.Texture;
 
 import static main.Main.*;
 
+/**
+ * Tutorial
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class Tutorial {
 
 	public static Tutorial ths;
@@ -11,6 +17,9 @@ public class Tutorial {
 	public int page = 0;
 	public int updates0, updates1;
 	
+	/**
+	 * lädt die verschiedenen Tutorial Seiten
+	 */
 	public Tutorial() {
 		
 		ths = this;
@@ -28,6 +37,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet die erste und letzte, zeitlich limitierte Seite um
+	 */
 	public void update() {
 		
 		if (page == 0 && updates - updates0 > 480) {
@@ -38,6 +50,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * rendert die Tutorial Seite
+	 */
 	public void render() {
 		
 		if (page >= 0 && page < pages.length) {
@@ -45,6 +60,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet von der 2. auf die 3. Seite um
+	 */
 	public static void move() {
 		
 		if (ths.page == 1) {
@@ -52,6 +70,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet von der 3. auf die 4. Seite um
+	 */
 	public static void look() {
 		
 		if (ths.page == 2) {
@@ -59,6 +80,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet von der 4. auf die 5. Seite um
+	 */
 	public static void talk() {
 		
 		if (ths.page == 3) {
@@ -66,6 +90,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet von der 5. auf die 6. Seite um
+	 */
 	public static void take() {
 		
 		if (ths.page == 4) {
@@ -73,6 +100,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet von der 6. auf die 7. Seite um
+	 */
 	public static void craft() {
 		
 		if (ths.page == 5) {
@@ -80,6 +110,9 @@ public class Tutorial {
 		}
 	}
 	
+	/**
+	 * schaltet von der 7. auf die 8. Seite um
+	 */
 	public static void give() {
 		
 		if (ths.page == 6) {

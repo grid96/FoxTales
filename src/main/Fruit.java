@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Frucht
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class Fruit extends Item {
 	
 	public Fruit() {

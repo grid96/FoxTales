@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Aufgebrochene Frucht mit Kräutern
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class HerbageFruit extends Item {
 
 	public HerbageFruit() {

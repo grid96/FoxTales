@@ -2,6 +2,12 @@ package main;
 
 import static main.Main.*;
 
+/**
+ * Affe
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class Ape extends Entity {
 
 	public String look2 = "Wer weiß, wann er sich das letzte Mal gewaschen hat.";
@@ -21,6 +27,9 @@ public class Ape extends Entity {
 		talk = "Fuchs: Du versperrst mir den Weg!";
 	}
 
+	/**
+	 * bringt den laufenden Dialog vorran und generiert einen fliegenden Stein, falls dieser zuvor geworfen wurde
+	 */
 	public void update() {
 
 		if (dialog > 0) {
@@ -41,23 +50,15 @@ public class Ape extends Entity {
 		}
 	}
 
+	/**
+	 * wirft den Stein
+	 */
 	public void throwStone() {
 
 		if (hasStone) {
 			lastThrow = updates;
 			Sounds.play(Sounds.ape);
 			hasStone = false;
-		}
-	}
-
-	public void click() {
-
-		if (random() < 0.5f) {
-			Game.ths.setText("Das ist ein dreckiger stinkender Affe.");
-			// Game.ths.think("Das ist ein dreckiger stinkender Affe.");
-		} else {
-			Game.ths.setText("Wer weiß, wann er sich das letzte Mal gewaschen hat.");
-			// Game.ths.think("Wer weiß, wann er sich das letzte Mal gewaschen hat.");
 		}
 	}
 
@@ -78,7 +79,6 @@ public class Ape extends Entity {
 	public void give(Item item) {
 
 		if (item instanceof Stone) {
-			// TODO throwing stones
 			item.container.remove(item);
 			hasStone = true;
 			throwStone();
@@ -90,7 +90,6 @@ public class Ape extends Entity {
 			Game.ths.setText("Affe: Ich kann das so nicht essen.", colorApe);
 		}
 		if (item instanceof HerbageFruit) {
-			// TODO ape movement
 			item.container.remove(item);
 			Game.ths.setText("GAME OVER");
 			Sounds.play(Sounds.fruit);
@@ -108,6 +107,9 @@ public class Ape extends Entity {
 		Textures.renderQuad(texture, x - w / 2, y - h, w, h);
 	}
 
+	/**
+	 * gibt die Textur des Affens abhängig vom letzten Steinwurf zurück
+	 */
 	public void getTexture() {
 
 		if (updates - lastThrow < 15) {

@@ -2,6 +2,12 @@ package main;
 
 import java.util.Vector;
 
+/**
+ * Item Container für das Inventar
+ * 
+ * @author Colin Dömer
+ *
+ */
 public class ItemContainer {
 
 	public Vector<Item> items;

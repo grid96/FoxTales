@@ -15,6 +15,11 @@ public class MainMenu extends Screen {
 	public int focus = -1;
 	public Text[] buttons = new Text[3];
 
+	/**
+	 * erzeugt das Hauptmenü mit Buttons
+	 * 
+	 * @param screen
+	 */
 	public MainMenu(Screen screen) {
 
 		super();
@@ -32,6 +37,9 @@ public class MainMenu extends Screen {
 		buttons[2].setColor(0x000000);
 	}
 
+	/**
+	 * updatet den Button Fokus
+	 */
 	public void update() {
 
 		focus = -1;
@@ -58,6 +66,9 @@ public class MainMenu extends Screen {
 		}
 	}
 
+	/**
+	 * rendert das Hauptmenü
+	 */
 	public void render() {
 
 		prerender();
